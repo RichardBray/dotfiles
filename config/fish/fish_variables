@@ -1,0 +1,4 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_user_paths:/Users/richardoliverbray/\x2ebun/bin
