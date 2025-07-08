@@ -17,6 +17,10 @@ My personal configuration files and settings.
   - Location: `config/fish/`
   - Symlinked to: `~/.config/fish`
 
+- **Neovim**: Text editor configuration (NvChad-based)
+  - Location: `config/nvim/`
+  - Symlinked to: `~/.config/nvim`
+
 ## Installation
 
 To set up these dotfiles on a new machine:
@@ -37,6 +41,9 @@ To set up these dotfiles on a new machine:
    
    # Fish Shell
    ln -s ~/dotfiles/config/fish ~/.config/fish
+   
+   # Neovim
+   ln -s ~/dotfiles/config/nvim ~/.config/nvim
    ```
 
 ## Structure
@@ -53,6 +60,10 @@ dotfiles/
 │   │   ├── fish_plugins
 │   │   ├── functions/
 │   │   └── completions/
+│   ├── nvim/
+│   │   ├── init.lua
+│   │   ├── lua/
+│   │   └── spell/
 │   └── sketchybar/
 │       ├── sketchybarrc
 │       ├── colors.sh

@@ -1,0 +1,34 @@
+# Generated spell files
+*.spl
+
+# Log files
+*.log
+
+# Cache and temporary files
+.cache/
+.DS_Store
+.netrwhist
+temp/
+tmp/
+node_modules/
+
+# Plugin compilation artifacts
+plugin/packer_compiled.lua
+
+# Session files
+sessions/
+session/
+
+# Local state files
+.luahistory
+.last*
+
+# Backups
+*~
+*.bak
+*.swp
+*.swo
+
+# Local lua-language-server files
+.luarc.json
+
