@@ -46,10 +46,10 @@ fi
 
 # Get connection speed/info
 if [ "$INTERFACE" = "en0" ]; then
-    # Check if it's WiFi first
-    WIFI_INFO=$(networksetup -getairportnetwork en0 2>/dev/null)
-    
-    if [[ "$WIFI_INFO" == *"You are not associated with an AirPort network"* ]]; then
+    # Check if it's WiFi first using system_profiler
+    WIFI_NAME=$(system_profiler SPAirPortDataType | awk '/Current Network Information:/,/PHY Mode:/ {if ($0 ~ /:$/ && $0 !~ /Current Network Information:/ && $0 !~ /PHY Mode:/) print $1}' | sed 's/:$//' | head -1)
+
+    if [ -z "$WIFI_NAME" ]; then
         # Not WiFi, check if en0 is active for other connection types
         if ifconfig en0 | grep -q "status: active"; then
             # en0 is active but not WiFi - likely Ethernet or Thunderbolt
@@ -58,11 +58,11 @@ if [ "$INTERFACE" = "en0" ]; then
             LABEL="Disconnected"
         fi
     else
-        # WiFi connection - extract network name
-        NETWORK_NAME=$(echo "$WIFI_INFO" | sed 's/Current Wi-Fi Network: //')
-        
+        # WiFi connection - use detected network name
+        LABEL="$WIFI_NAME"
+
         # Get signal strength if airport utility is available
-        if command -v airport >/dev/null 2>&1; then
+        if command -v airport > /dev/null 2>&1; then
             SIGNAL=$(airport -I | grep agrCtlRSSI | awk '{print $2}' | sed 's/-//')
             if [ -n "$SIGNAL" ] && [ "$SIGNAL" -le 100 ]; then
                 # Convert RSSI to approximate signal percentage
@@ -75,15 +75,10 @@ if [ "$INTERFACE" = "en0" ]; then
                 else
                     SIGNAL_PERCENT="Poor"
                 fi
-                LABEL="$NETWORK_NAME ($SIGNAL_PERCENT)"
-            else
-                LABEL="$NETWORK_NAME"
+                LABEL="$WIFI_NAME ($SIGNAL_PERCENT)"
             fi
-        else
-            # Fallback: just show network name
-            LABEL="$NETWORK_NAME"
         fi
-        
+
         # Truncate long network names
         if [ ${#LABEL} -gt 20 ]; then
             LABEL="${LABEL:0:17}..."

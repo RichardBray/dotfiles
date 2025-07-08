@@ -21,6 +21,10 @@ My personal configuration files and settings.
   - Location: `config/nvim/`
   - Symlinked to: `~/.config/nvim`
 
+- **Tmux**: Terminal multiplexer configuration
+  - Location: `tmux.conf`
+  - Symlinked to: `~/.tmux.conf`
+
 ## Installation
 
 To set up these dotfiles on a new machine:
@@ -44,6 +48,9 @@ To set up these dotfiles on a new machine:
    
    # Neovim
    ln -s ~/dotfiles/config/nvim ~/.config/nvim
+   
+   # Tmux
+   ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
    ```
 
 ## Structure
@@ -68,5 +75,6 @@ dotfiles/
 │       ├── sketchybarrc
 │       ├── colors.sh
 │       └── plugins/
+├── tmux.conf
 └── README.md
 ```
