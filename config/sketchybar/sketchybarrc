@@ -1,0 +1,150 @@
+#!/bin/bash
+
+# Modern SketchyBar Configuration
+# A clean, developer-friendly setup with commonly used widgets
+
+source "$CONFIG_DIR/colors.sh"
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+##### Bar Appearance #####
+sketchybar --bar height=25 \
+                color=$BAR_COLOR \
+                # border_width=1 \
+                border_color=$BORDER_COLOR \
+                shadow=off \
+                position=top \
+                sticky=on \
+                padding_left=0 \
+                padding_right=0 \
+                y_offset=0 \
+                margin=10 \
+                corner_radius=9
+
+##### Changing Defaults #####
+default=(
+  # padding_left=5
+  # padding_right=5
+  icon.font="SF Pro:Semibold:15.0"
+  label.font="SF Pro:Semibold:13.0"
+  icon.color=$ICON_COLOR
+  label.color=$LABEL_COLOR
+  icon.padding_left=4
+  label.padding_left=4
+  label.padding_right=4
+  background.height=26
+  background.border_width=2
+  background.border_color=$ITEM_BG_COLOR
+)
+sketchybar --default "${default[@]}"
+
+##### Left Side Items #####
+
+# Aerospace Spaces
+for sid in $(aerospace list-workspaces --all); do
+    sketchybar --add item space.$sid left \
+        --set space.$sid \
+        background.color=0xffffffff \
+        background.corner_radius=5 \
+        background.height=20 \
+        background.drawing=off \
+        label="$sid" \
+        click_script="aerospace workspace $sid" \
+        label.padding_right=10 \
+        label.padding_left=0 \
+        label.shadow.drawing=off
+done
+
+# Initialize aerospace workspace highlighting
+$CONFIG_DIR/plugins/aerospace_update_all.sh
+
+# Mission Control Spaces
+# SPACE_ICONS=("󰼏" "󰼐" "󰼑" "󰼒" "󰼓" "󰼔" "󰼕" "󰼖" "󰼗" "󰿡")
+# for i in "${!SPACE_ICONS[@]}"; do
+#   sid="$(($i+1))"
+#   space=(
+#     space="$sid"
+#     icon="${SPACE_ICONS[i]}"
+#     icon.padding_left=8
+#     icon.padding_right=8
+#     icon.color=$ICON_COLOR
+#     icon.highlight_color=$ACCENT_COLOR
+#     background.color=$ITEM_BG_COLOR
+#     background.border_color=$BORDER_COLOR
+#     background.drawing=off
+#     label.drawing=off
+#     script="$PLUGIN_DIR/space.sh"
+#     click_script="yabai -m space --focus $sid 2>/dev/null || skhd -k 'ctrl - $sid'"
+#   )
+#   sketchybar --add space space."$sid" left \
+#              --set space."$sid" "${space[@]}"
+# done
+
+# Separator
+sketchybar --add item separator_l left \
+           --set separator_l icon="" \
+                             icon.font="Hack Nerd Font:Regular:16.0" \
+                             background.padding_left=15 \
+                             background.padding_right=15 \
+                             label.drawing=off \
+                             icon.color=$SEPARATOR_COLOR
+
+# Front App
+sketchybar --add item front_app left \
+           --set front_app icon.drawing=off \
+                           background.color=$ITEM_BG_COLOR \
+                           background.border_color=$BORDER_COLOR \
+                           background.drawing=on \
+                           background.padding_left=10 \
+                           background.padding_right=10 \
+                           label.color=$LABEL_COLOR \
+                           label.font="SF Pro:Bold:13.0" \
+                           script="$PLUGIN_DIR/front_app.sh" \
+           --subscribe front_app front_app_switched
+
+##### Center Items #####
+
+# Window Title (if using yabai)
+# sketchybar --add item window_title center \
+#            --set window_title script="$PLUGIN_DIR/window_title.sh" \
+#                               icon.drawing=off \
+#                               label.color=$LABEL_COLOR \
+#                               label.font="SF Pro:Regular:13.0" \
+#                               background.drawing=off \
+#            --subscribe window_title front_app_switched space_change
+
+##### Right Side Items #####
+
+# Network
+sketchybar --add item network right \
+           --set network update_freq=5 \
+                         icon="󰖩" \
+                         background.color=$ITEM_BG_COLOR \
+                         background.border_color=$BORDER_COLOR \
+                         background.drawing=on \
+                         script="$PLUGIN_DIR/network.sh"
+
+# Battery
+sketchybar --add item battery right \
+           --set battery update_freq=120 \
+                         script="$PLUGIN_DIR/battery.sh" \
+                         icon.color=$ACCENT_COLOR \
+                         background.color=$ITEM_BG_COLOR \
+                         background.border_color=$BORDER_COLOR \
+                         background.drawing=on \
+           --subscribe battery system_woke power_source_change
+
+# Date and Time
+sketchybar --add item clock right \
+           --set clock update_freq=10 \
+                       icon="" \
+                       icon.color=$ACCENT_COLOR \
+                       background.color=$ITEM_BG_COLOR \
+                       background.border_color=$BORDER_COLOR \
+                       background.drawing=on \
+                       script="$PLUGIN_DIR/clock.sh" \
+                       click_script="open -a Calendar"
+
+##### Finalizing Setup #####
+sketchybar --hotload on
+sketchybar --update
