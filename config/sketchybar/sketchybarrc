@@ -165,6 +165,16 @@ sketchybar --add item clock right \
                        script="$PLUGIN_DIR/clock.sh" \
                        click_script="open -a Calendar"
 
+# CPU Usage
+sketchybar --add item cpu right \
+           --set cpu update_freq=5 \
+                       script="$PLUGIN_DIR/cpu.sh"
+
+# Memory Usage
+sketchybar --add item memory right \
+           --set memory update_freq=5 \
+                       script="$PLUGIN_DIR/memory.sh"
+
 ##### Finalizing Setup #####
 sketchybar --hotload on
 sketchybar --update

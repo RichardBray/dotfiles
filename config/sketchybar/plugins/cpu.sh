@@ -10,8 +10,9 @@ if [ -z "$CPU_USAGE" ]; then
     CPU_USAGE="0"
 fi
 
-# Remove any decimal points for comparison
+# Remove any decimal points for comparison and round to integer
 CPU_INT=$(echo "$CPU_USAGE" | cut -d'.' -f1)
+CPU_USAGE=$(printf "%.0f" "$CPU_USAGE")
 
 # Set color based on CPU usage
 if [ "$CPU_INT" -ge 80 ]; then
@@ -27,4 +28,7 @@ fi
 # Update the CPU item
 sketchybar --set "$NAME" icon="" \
                         icon.color="$COLOR" \
-                        label="${CPU_USAGE}%"
+                        label="CPU ${CPU_USAGE}%" \
+                        background.color=$ITEM_BG_COLOR \
+                        background.border_color=$BORDER_COLOR \
+                        background.drawing=on
