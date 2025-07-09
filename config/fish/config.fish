@@ -3,8 +3,8 @@ if status is-interactive
 end
 
 # Source sensitive API keys from separate file (not tracked in git)
-if test -f ~/.config/fish/secrets.fish
-    source ~/.config/fish/secrets.fish
+if test -f ~/.config/fish/.secrets.fish
+    source ~/.config/fish/.secrets.fish
 end
 
 set -x EDITOR nvim

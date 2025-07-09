@@ -12,7 +12,9 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+    'exec-and-forget /bin/bash -c "sleep 3 && CONFIG_DIR=/Users/richardoliverbray/.config/sketchybar /Users/richardoliverbray/.config/sketchybar/plugins/aerospace_update_all.sh"'
+]
 
 exec-on-workspace-change = ['/bin/bash', '-c',
     'CONFIG_DIR=/Users/richardoliverbray/.config/sketchybar /Users/richardoliverbray/.config/sketchybar/plugins/aerospace_update_all.sh $AEROSPACE_FOCUSED_WORKSPACE'
@@ -131,6 +133,7 @@ alt-ctrl-3 = 'workspace 3'
 alt-ctrl-4 = 'workspace 4'
 alt-ctrl-5 = 'workspace 5'
 alt-ctrl-6 = 'workspace 6'
+alt-ctrl-7 = 'workspace 7'
 # --
 # alt-ctrl-7 = 'workspace 7'
 # alt-ctrl-8 = 'workspace 8'
@@ -171,6 +174,7 @@ alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
 alt-shift-6 = 'move-node-to-workspace 6'
+alt-shift-7 = 'move-node-to-workspace 7'
 # ---
 # alt-shift-7 = 'move-node-to-workspace 7'
 # alt-shift-8 = 'move-node-to-workspace 8'

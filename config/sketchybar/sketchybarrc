@@ -41,19 +41,39 @@ sketchybar --default "${default[@]}"
 ##### Left Side Items #####
 
 # Aerospace Spaces
-for sid in $(aerospace list-workspaces --all); do
-    sketchybar --add item space.$sid left \
-        --set space.$sid \
-        background.color=0xffffffff \
-        background.corner_radius=5 \
-        background.height=20 \
-        background.drawing=off \
-        label="$sid" \
-        click_script="aerospace workspace $sid" \
-        label.padding_right=10 \
-        label.padding_left=0 \
-        label.shadow.drawing=off
-done
+# Wait for aerospace to be fully loaded
+sleep 1
+# Check if aerospace is available
+if command -v aerospace >/dev/null 2>&1; then
+    for sid in $(aerospace list-workspaces --all 2>/dev/null || echo "1 2 3 4 5 6 7"); do
+        sketchybar --add item space.$sid left \
+            --set space.$sid \
+            background.color=0xffffffff \
+            background.corner_radius=5 \
+            background.height=20 \
+            background.drawing=off \
+            label="$sid" \
+            click_script="aerospace workspace $sid" \
+            label.padding_right=10 \
+            label.padding_left=0 \
+            label.shadow.drawing=off
+    done
+else
+    # Fallback if aerospace is not available
+    for sid in 1 2 3 4 5 6 7; do
+        sketchybar --add item space.$sid left \
+            --set space.$sid \
+            background.color=0xffffffff \
+            background.corner_radius=5 \
+            background.height=20 \
+            background.drawing=off \
+            label="$sid" \
+            click_script="aerospace workspace $sid" \
+            label.padding_right=10 \
+            label.padding_left=0 \
+            label.shadow.drawing=off
+    done
+fi
 
 # Initialize aerospace workspace highlighting
 $CONFIG_DIR/plugins/aerospace_update_all.sh
