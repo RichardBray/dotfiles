@@ -1,0 +1,8 @@
+../fish/.secrets.fish
+
+# Exclude personal/project-specific directories and files
+projects/
+statsig/
+todos/
+bash-command-log.txt
+.DS_Store
