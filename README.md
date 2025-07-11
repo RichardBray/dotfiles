@@ -25,6 +25,11 @@ My personal configuration files and settings.
   - Location: `tmux.conf`
   - Symlinked to: `~/.tmux.conf`
 
+- **Claude**: Claude AI configuration and settings
+  - Location: `.claude/`
+  - Symlinked to: `~/.claude`
+  - Contains settings, hooks, audio files, and project configurations
+
 ## Installation
 
 To set up these dotfiles on a new machine:
@@ -51,6 +56,9 @@ To set up these dotfiles on a new machine:
    
    # Tmux
    ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+   
+   # Claude
+   ln -s ~/dotfiles/.claude ~/.claude
    ```
 
 ## Structure
