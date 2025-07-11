@@ -1,0 +1,73 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(.env)",
+      "Read(**/.env*)",
+      "Read(**/env*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.crt)",
+      "Read(**/*.cert)",
+      "Read(**/secrets/**)",
+      "Read(**/credentials/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ~/.claude/hooks/log_pre_tool_use.py"
+          },
+          {
+            "type": "command",
+            "command": "uv run ~/.claude/hooks/use_bun.py"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ~/.claude/hooks/ts_lint.py"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ~/.claude/hooks/play_audio.py"
+          },
+          {
+            "type": "command",
+            "command": "uv run ~/.claude/hooks/macos_notification.py"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ~/.claude/hooks/play_audio.py"
+          },
+          {
+            "type": "command",
+            "command": "uv run ~/.claude/hooks/macos_notification.py"
+          }
+        ]
+      }
+    ]
+  }
+}
