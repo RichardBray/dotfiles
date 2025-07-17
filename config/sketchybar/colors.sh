@@ -20,7 +20,7 @@ export BAR_COLOR=0x00000000          # Fully transparent
 export BORDER_COLOR=0x80c0c0c0       # Light border
 
 # Item colors
-export ITEM_BG_COLOR=0x44000000      # Semi-transparent for items
+export ITEM_BG_COLOR=0xff000000      # Black background
 export ACCENT_COLOR=$BLUE            # Blue accent
 export ICON_COLOR=$WHITE             # White icons
 export LABEL_COLOR=$WHITE            # White labels

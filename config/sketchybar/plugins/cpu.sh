@@ -29,6 +29,6 @@ fi
 sketchybar --set "$NAME" icon="" \
                         icon.color="$COLOR" \
                         label="CPU ${CPU_USAGE}%" \
+                        background.padding_left=10 \
                         background.color=$ITEM_BG_COLOR \
-                        background.border_color=$BORDER_COLOR \
                         background.drawing=on

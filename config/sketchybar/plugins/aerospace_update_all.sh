@@ -15,7 +15,7 @@ if [ -z "$CURRENT_WORKSPACE" ]; then
 fi
 
 # Update all workspace indicators
-for workspace in 1 2 3 4 5 6 7; do
+for workspace in 7 1 2 3 4 5 6; do
     if [ "$workspace" = "$CURRENT_WORKSPACE" ]; then
         # Highlight the focused workspace
         sketchybar --set space.$workspace \

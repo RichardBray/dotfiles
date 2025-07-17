@@ -2,6 +2,7 @@
 
 # Claude directory ignores
 .claude/.ruff_cache
+.claude/shell-snapshots/
 .claude/projects/
 .claude/statsig/
 .claude/todos/

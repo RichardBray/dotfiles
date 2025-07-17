@@ -10,31 +10,20 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 ##### Bar Appearance #####
 sketchybar --bar height=25 \
                 color=$BAR_COLOR \
-                # border_width=1 \
-                border_color=$BORDER_COLOR \
-                shadow=off \
-                position=top \
-                sticky=on \
-                padding_left=0 \
-                padding_right=0 \
-                y_offset=0 \
-                margin=10 \
-                corner_radius=9
+                padding=10 \
+                margin_top=50 \
 
 ##### Changing Defaults #####
 default=(
   # padding_left=5
   # padding_right=5
-  icon.font="SF Pro:Semibold:15.0"
-  label.font="SF Pro:Semibold:13.0"
+  icon.font="SF Pro:Semibold:17.0"
+  label.font="SF Pro:Semibold:15.0"
   icon.color=$ICON_COLOR
   label.color=$LABEL_COLOR
   icon.padding_left=4
   label.padding_left=4
-  label.padding_right=4
   background.height=26
-  background.border_width=2
-  background.border_color=$ITEM_BG_COLOR
 )
 sketchybar --default "${default[@]}"
 
@@ -45,7 +34,33 @@ sketchybar --default "${default[@]}"
 sleep 1
 # Check if aerospace is available
 if command -v aerospace >/dev/null 2>&1; then
-    for sid in $(aerospace list-workspaces --all 2>/dev/null || echo "1 2 3 4 5 6 7"); do
+    # Add workspace 7 first
+    sketchybar --add item space.7 left \
+        --set space.7 \
+        background.corner_radius=5 \
+        background.height=20 \
+        background.drawing=off \
+        label="7" \
+        label.font="SF Pro:Semibold:16.0" \
+        click_script="aerospace workspace 7" \
+        label.padding_right=10 \
+        label.padding_left=0 \
+        label.shadow.drawing=off
+    
+    # Add divider after workspace 7
+    sketchybar --add item divider.left left \
+            --set divider.left \
+            label.drawing=off \
+            icon.drawing=on \
+            icon="|" \
+            icon.color=$LABEL_COLOR \
+            icon.font="SF Pro:Regular:16.0" \
+            background.drawing=off \
+            background.padding_left=5 \
+            background.padding_right=5
+    
+    # Add workspaces 1-6
+    for sid in 1 2 3 4 5 6; do
         sketchybar --add item space.$sid left \
             --set space.$sid \
             background.color=0xffffffff \
@@ -53,6 +68,7 @@ if command -v aerospace >/dev/null 2>&1; then
             background.height=20 \
             background.drawing=off \
             label="$sid" \
+            label.font="SF Pro:Semibold:16.0" \
             click_script="aerospace workspace $sid" \
             label.padding_right=10 \
             label.padding_left=0 \
@@ -60,78 +76,69 @@ if command -v aerospace >/dev/null 2>&1; then
     done
 else
     # Fallback if aerospace is not available
-    for sid in 1 2 3 4 5 6 7; do
+    # Add workspace 7 first
+    sketchybar --add item space.7 left \
+        --set space.7 \
+        background.drawing=off \
+        label="7" \
+        label.font="SF Pro:Semibold:16.0" \
+        click_script="aerospace workspace 7" \
+        label.shadow.drawing=off
+    
+    # Add divider after workspace 7
+    sketchybar --add item divider.left left \
+            --set divider.left \
+            label.drawing=off \
+            icon.drawing=on \
+            icon="|" \
+            icon.color=$LABEL_COLOR \
+            icon.font="SF Pro:Regular:16.0" \
+            background.drawing=off 
+    
+    # Add workspaces 1-6
+    for sid in 1 2 3 4 5 6; do
         sketchybar --add item space.$sid left \
             --set space.$sid \
-            background.color=0xffffffff \
-            background.corner_radius=5 \
-            background.height=20 \
             background.drawing=off \
             label="$sid" \
+            label.font="SF Pro:Semibold:16.0" \
             click_script="aerospace workspace $sid" \
-            label.padding_right=10 \
-            label.padding_left=0 \
             label.shadow.drawing=off
     done
 fi
 
+# Create bracket around workspace area for black background
+sketchybar --add bracket workspace_bracket space.7 divider.left space.1 space.2 space.3 space.4 space.5 space.6 \
+           --set workspace_bracket \
+           background.color=$ITEM_BG_COLOR \
+           # background.corner_radius=8 \
+           background.height=32 \
+           # background.border_width=2 \
+           # background.border_color=0xffffffff \
+           background.drawing=on
+
 # Initialize aerospace workspace highlighting
 $CONFIG_DIR/plugins/aerospace_update_all.sh
 
-# Mission Control Spaces
-# SPACE_ICONS=("󰼏" "󰼐" "󰼑" "󰼒" "󰼓" "󰼔" "󰼕" "󰼖" "󰼗" "󰿡")
-# for i in "${!SPACE_ICONS[@]}"; do
-#   sid="$(($i+1))"
-#   space=(
-#     space="$sid"
-#     icon="${SPACE_ICONS[i]}"
-#     icon.padding_left=8
-#     icon.padding_right=8
-#     icon.color=$ICON_COLOR
-#     icon.highlight_color=$ACCENT_COLOR
-#     background.color=$ITEM_BG_COLOR
-#     background.border_color=$BORDER_COLOR
-#     background.drawing=off
-#     label.drawing=off
-#     script="$PLUGIN_DIR/space.sh"
-#     click_script="yabai -m space --focus $sid 2>/dev/null || skhd -k 'ctrl - $sid'"
-#   )
-#   sketchybar --add space space."$sid" left \
-#              --set space."$sid" "${space[@]}"
-# done
-
 # Separator
-sketchybar --add item separator_l left \
-           --set separator_l icon="" \
-                             icon.font="Hack Nerd Font:Regular:16.0" \
-                             background.padding_left=15 \
-                             background.padding_right=15 \
-                             label.drawing=off \
-                             icon.color=$SEPARATOR_COLOR
+# sketchybar --add item separator_l left \
+#            --set separator_l icon="" \
+#                              icon.font="Hack Nerd Font:Regular:16.0" \
+#                              background.padding_left=10 \
+#                              background.padding_right=10 \
+#                              label.drawing=off \
+#                              icon.color=$SEPARATOR_COLOR
 
 # Front App
 sketchybar --add item front_app left \
            --set front_app icon.drawing=off \
                            background.color=$ITEM_BG_COLOR \
-                           background.border_color=$BORDER_COLOR \
                            background.drawing=on \
                            background.padding_left=10 \
-                           background.padding_right=10 \
                            label.color=$LABEL_COLOR \
-                           label.font="SF Pro:Bold:13.0" \
+                           label.font="SF Pro:Bold:15.0" \
                            script="$PLUGIN_DIR/front_app.sh" \
            --subscribe front_app front_app_switched
-
-##### Center Items #####
-
-# Window Title (if using yabai)
-# sketchybar --add item window_title center \
-#            --set window_title script="$PLUGIN_DIR/window_title.sh" \
-#                               icon.drawing=off \
-#                               label.color=$LABEL_COLOR \
-#                               label.font="SF Pro:Regular:13.0" \
-#                               background.drawing=off \
-#            --subscribe window_title front_app_switched space_change
 
 ##### Right Side Items #####
 
@@ -140,7 +147,8 @@ sketchybar --add item network right \
            --set network update_freq=5 \
                          icon="󰖩" \
                          background.color=$ITEM_BG_COLOR \
-                         background.border_color=$BORDER_COLOR \
+                         background.padding_left=10 \
+                         icon.padding_left=10 \
                          background.drawing=on \
                          script="$PLUGIN_DIR/network.sh"
 
@@ -150,7 +158,7 @@ sketchybar --add item battery right \
                          script="$PLUGIN_DIR/battery.sh" \
                          icon.color=$ACCENT_COLOR \
                          background.color=$ITEM_BG_COLOR \
-                         background.border_color=$BORDER_COLOR \
+                         background.padding_left=10 \
                          background.drawing=on \
            --subscribe battery system_woke power_source_change
 
@@ -159,8 +167,8 @@ sketchybar --add item clock right \
            --set clock update_freq=10 \
                        icon="" \
                        icon.color=$ACCENT_COLOR \
+                       background.padding_left=10 \
                        background.color=$ITEM_BG_COLOR \
-                       background.border_color=$BORDER_COLOR \
                        background.drawing=on \
                        script="$PLUGIN_DIR/clock.sh" \
                        click_script="open -a Calendar"

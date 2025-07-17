@@ -42,5 +42,4 @@ sketchybar --set "$NAME" icon="" \
                         icon.color="$COLOR" \
                         label="MEM ${MEMORY_USAGE}%" \
                         background.color=$ITEM_BG_COLOR \
-                        background.border_color=$BORDER_COLOR \
                         background.drawing=on
