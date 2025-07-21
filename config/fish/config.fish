@@ -26,7 +26,7 @@ alias ta='tmux attach'
 alias tl='tmux list-sessions'
 alias ts='tmux new-session'
 alias tk='tmux kill-session'
-alias cld='claude'
+alias cld='claude --dangerously-skip-permissions'
 alias op='opencode'
 
 # Git abbreviations

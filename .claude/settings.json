@@ -3,12 +3,14 @@
     "deny": [
       "Read(.env)",
       "Read(**/.env*)",
+      "Read(**/.secret*)",
       "Read(**/env*)",
       "Read(**/*.pem)",
       "Read(**/*.key)",
       "Read(**/*.crt)",
       "Read(**/*.cert)",
       "Read(**/secrets/**)",
+      "Read(**/node_modules/**)",
       "Read(**/credentials/**)"
     ]
   },
