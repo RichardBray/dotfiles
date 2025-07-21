@@ -171,16 +171,26 @@ sketchybar --add item battery right \
                          background.drawing=on \
            --subscribe battery system_woke power_source_change
 
-# Date and Time
-sketchybar --add item clock right \
-           --set clock update_freq=10 \
-                       icon="" \
-                       icon.color=$ACCENT_COLOR \
-                       background.padding_left=10 \
-                       background.color=$ITEM_BG_COLOR \
-                       background.drawing=on \
-                       script="$PLUGIN_DIR/clock.sh" \
-                       click_script="open -a Calendar"
+# Date and Time (split into two items)
+# Time item (regular font)
+sketchybar --add item clock.time right \
+           --set clock.time update_freq=10 \
+                           background.color=$ITEM_BG_COLOR \
+                           background.drawing=on \
+                           background.padding_left=5 \
+                           script="$PLUGIN_DIR/clock.sh" \
+                           click_script="open -a Calendar"
+
+# Date item (bold font)
+sketchybar --add item clock.date right \
+           --set clock.date update_freq=10 \
+                           icon="" \
+                           icon.color=$ACCENT_COLOR \
+                           background.color=$ITEM_BG_COLOR \
+                           background.drawing=on \
+                           background.padding_left=10 \
+                           script="$PLUGIN_DIR/clock.sh" \
+                           click_script="open -a Calendar"
 
 # CPU Usage
 sketchybar --add item cpu right \
