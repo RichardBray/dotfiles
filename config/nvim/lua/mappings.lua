@@ -38,3 +38,13 @@ map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 
 map("n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostic message" })
 map("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss noice message" })
+
+-- Remap delete operations to use blackhole register
+map("n", "d", '"_d', { desc = "Delete to blackhole register" })
+map("n", "dd", '"_dd', { desc = "Delete line to blackhole register" })
+map("v", "d", '"_d', { desc = "Delete selection to blackhole register" })
+map("n", "D", '"_D', { desc = "Delete to end of line to blackhole register" })
+-- map("n", "x", '"_x', { desc = "Delete character to blackhole register" })
+-- map("n", "X", '"_X', { desc = "Delete character before cursor to blackhole register" })
+map("n", "C", '"_C', { desc = "Change to end of line to blackhole register" })
+map("n", "cc", '"_cc', { desc = "Change whole line to blackhole register" })
