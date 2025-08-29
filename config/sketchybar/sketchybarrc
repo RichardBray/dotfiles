@@ -7,19 +7,15 @@ source "$CONFIG_DIR/colors.sh"
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
-FONT="Nunito Sans"
-
 ##### Bar Appearance #####
 bar=(
-  height=25
+  height=40
   color=$BAR_COLOR
   shadow=on
   position=top
   sticky=on
   padding_right=10
   padding_left=10
-  corner_radius=9
-  y_offset=5
   margin=10
 )
 sketchybar --bar "${bar[@]}"
@@ -27,7 +23,7 @@ sketchybar --bar "${bar[@]}"
 ##### Defaults #####
 default=(
   icon.font="SF Pro:Semibold:17.0"
-  label.font="SF Pro:Semibold:15.0"
+  label.font="SF Pro:Semibold:13.0"
   icon.color=$ICON_COLOR
   label.color=$LABEL_COLOR
   icon.padding_left=4
@@ -177,14 +173,15 @@ sketchybar --add item clock.time right \
            --set clock.time update_freq=10 \
                            background.color=$ITEM_BG_COLOR \
                            background.drawing=on \
-                           background.padding_left=5 \
+                           background.height=30 \
+                           label.padding_right=10 \
+                           background.corner_radius=5 \
                            script="$PLUGIN_DIR/clock.sh" \
                            click_script="open -a Calendar"
 
 # Date item (bold font)
 sketchybar --add item clock.date right \
            --set clock.date update_freq=10 \
-                           icon="" \
                            icon.color=$ACCENT_COLOR \
                            background.color=$ITEM_BG_COLOR \
                            background.drawing=on \

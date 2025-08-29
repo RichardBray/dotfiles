@@ -12,6 +12,9 @@
       "Read(**/secrets/**)",
       "Read(**/node_modules/**)",
       "Read(**/credentials/**)"
+    ],
+    "ask": [
+      "Write"
     ]
   },
   "hooks": {
@@ -19,10 +22,6 @@
       {
         "matcher": "Bash",
         "hooks": [
-          {
-            "type": "command",
-            "command": "uv run ~/.claude/hooks/log_pre_tool_use.py"
-          },
           {
             "type": "command",
             "command": "uv run ~/.claude/hooks/use_bun.py"
@@ -71,5 +70,10 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "python3 ~/.claude/statusline.py"
+  },
+  "model": "opusplan"
 }

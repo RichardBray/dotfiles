@@ -9,7 +9,6 @@ end
 
 set -x EDITOR nvim
 
-
 # Initialize Starship prompt
 starship init fish | source
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -17,6 +16,8 @@ zoxide init fish | source
 
 # Add Bun global bin directory to PATH for Gemini CLI
 fish_add_path "/Users/richardoliverbray/.bun/bin"
+
+# Aliases
 alias vim='nvim'
 alias vi='nvim'
 alias claude-squad='cs'
@@ -28,6 +29,7 @@ alias ts='tmux new-session'
 alias tk='tmux kill-session'
 alias cld='claude --dangerously-skip-permissions'
 alias op='opencode'
+alias lg='lazygit'
 
 # Git abbreviations
 abbr gst 'git status'

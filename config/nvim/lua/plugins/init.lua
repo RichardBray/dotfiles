@@ -31,12 +31,18 @@ return {
 
   {
   	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
-  			"vim", "lua", "vimdoc",
-        "html", "css", "hcl", "toml"
-  		},
-  	},
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = {
+          "vim", "lua", "vimdoc",
+          "html", "css", "hcl", "toml", "hurl",
+          "javascript", "typescript", "tsx"
+        },
+        highlight = {
+          enable = true
+        }
+      }
+    end,
   },
 
   {
