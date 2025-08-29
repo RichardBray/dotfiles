@@ -1,0 +1,47 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "tokyonight",
+  "model": "do-ollama/deepseek",
+  "provider": {
+    "moonshot": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.moonshot.ai/v1"
+      },
+      "env": ["MOONSHOT_API_KEY"],
+      "models": {
+        "kimi-k2-0711-preview": {},
+        "kimi-k2-turbo-preview": {}
+      }
+    },
+    "o-ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://178.128.226.213:11434/v1"
+      },
+      "models": {
+        "deepseek-coder-v2:16b": {
+          "name": "deepseek-coder-v2:16b",
+          "limit": {
+            "context": 200000,
+            "output": 32000
+          }
+        },
+        "llama4:16x17b": {
+          "name": "llama4:16x17b",
+          "limit": {
+            "context": 200000,
+            "output": 32000
+          }
+        },
+        "gemma3n:e4b": {
+          "name": "gemma2-9b-it",
+          "limit": {
+            "context": 200000,
+            "output": 32000
+          }
+        }
+      }
+    }
+  }
+}
