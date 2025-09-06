@@ -9,6 +9,10 @@ end
 
 set -x EDITOR nvim
 
+# Set zoxide data directory to local storage
+set -x _ZO_DATA_DIR "$HOME/.local/share/zoxide"
+set -g fish_greeting ""
+
 # Initialize Starship prompt
 starship init fish | source
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -16,6 +20,9 @@ zoxide init fish | source
 
 # Add Bun global bin directory to PATH for Gemini CLI
 fish_add_path "/Users/richardoliverbray/.bun/bin"
+
+# Add WezTerm to PATH
+fish_add_path -a "/Applications/WezTerm.app/Contents/MacOS"
 
 # Aliases
 alias vim='nvim'
@@ -30,6 +37,7 @@ alias tk='tmux kill-session'
 alias cld='claude --dangerously-skip-permissions'
 alias op='opencode'
 alias lg='lazygit'
+alias cd='z'
 
 # Git abbreviations
 abbr gst 'git status'
