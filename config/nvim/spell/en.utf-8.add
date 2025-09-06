@@ -13,3 +13,5 @@ fastify
 fastify
 ClickHouse
 PromQL
+poml
+WezTerm
