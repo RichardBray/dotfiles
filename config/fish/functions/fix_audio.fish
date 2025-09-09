@@ -3,7 +3,7 @@ function fix_audio --description "Fix audio processing with clean_audio.py scrip
     # Check if arguments are provided
     if test (count $argv) -lt 2
         echo "Usage: fix_audio <audio_file> <preset>"
-        echo "Example: fix_audio waterm Usual-2"
+        echo "Example: fix_audio wezterm Usual-2"
         return 1
     end
 
