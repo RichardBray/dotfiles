@@ -61,3 +61,9 @@ abbr grh 'git reset --hard'
 abbr grs 'git reset --soft'
 abbr gsh 'git stash'
 abbr gsp 'git stash pop'
+
+# Audio aliases
+abbr list_devices 'uv run --with "numpy,pyaudio" virtual_mic_delay.py --list-devices'
+abbr input_device 'uv run --with "numpy,pyaudio" virtual_mic_delay.py --input-device 6 --output-device 10 --delay 140'
+
+
