@@ -9,7 +9,7 @@ function speed_video --description "Speed up video by 10% and process with whisp
     set input_name $argv[1]
 
     echo "Processing video: $input_name"
-    ffmpeg -i ~/Downloads/"$input_name".mov -filter_complex "[0:v]setpts=0.909090*PTS[v];[0:a]atempo=1.1[a]" -map "[v]" -map "[a]" -crf 18 -preset medium -b:a 320k ~/Downloads/"$input_name"_ff.mp4 && ~/whisper_app/index.js ~/Downloads/"$input_name"_ff.mp4
+    ffmpeg -i ~/Downloads/"$input_name" -filter_complex "[0:v]setpts=0.909090*PTS[v];[0:a]atempo=1.1[a]" -map "[v]" -map "[a]" -crf 18 -preset medium -b:a 320k ~/Downloads/"$input_name"_ff.mp4 && ~/whisper_app/index.js ~/Downloads/"$input_name"_ff.mp4
 
     echo "Video processing complete"
 end

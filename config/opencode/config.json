@@ -14,6 +14,9 @@
         "kimi-k2-turbo-preview": {}
       }
     },
+    "zhipuai": {
+      "api": "https://api.z.ai/api/coding/paas/v4"
+    },
     "o-ollama": {
       "npm": "@ai-sdk/openai-compatible",
       "options": {
