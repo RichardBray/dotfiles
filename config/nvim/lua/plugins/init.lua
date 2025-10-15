@@ -34,9 +34,10 @@ return {
     config = function()
       require('nvim-treesitter.configs').setup {
         ensure_installed = {
+          "markdown", "markdown_inline",
           "vim", "lua", "vimdoc",
           "html", "css", "hcl", "toml", "hurl",
-          "javascript", "typescript", "tsx"
+          "javascript", "typescript", "tsx", "svelte"
         },
         highlight = {
           enable = true

@@ -23,7 +23,7 @@ sketchybar --bar "${bar[@]}"
 ##### Defaults #####
 default=(
   icon.font="SF Pro:Semibold:17.0"
-  label.font="SF Pro:Semibold:13.0"
+  label.font="SF Pro:Semibold:15.0"
   icon.color=$ICON_COLOR
   label.color=$LABEL_COLOR
   icon.padding_left=4

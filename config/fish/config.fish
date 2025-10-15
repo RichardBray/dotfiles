@@ -64,5 +64,7 @@ abbr gsp 'git stash pop'
 
 # Audio aliases
 abbr cuca 'uv run --with "numpy,pyaudio" ~/content-tools/scripts/virtual_mic_delay.py'
+abbr transcribe '~/whisper_app/index.js ~/Downloads/"$input_name"_ff.mp4'
+
 
 
