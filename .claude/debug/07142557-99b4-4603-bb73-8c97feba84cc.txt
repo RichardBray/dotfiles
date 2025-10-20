@@ -1,0 +1,115 @@
+[DEBUG] Watching for changes in setting files /Users/richardoliverbray/.claude/settings.json...
+[DEBUG] Applying permission update: Adding 11 deny rule(s) to destination 'userSettings': ["Read(.env)","Read(**/.env*)","Read(**/.secret*)","Read(**/env*)","Read(**/*.pem)","Read(**/*.key)","Read(**/*.crt)","Read(**/*.cert)","Read(**/secrets/**)","Read(**/node_modules/**)","Read(**/credentials/**)"]
+[DEBUG] Applying permission update: Adding 1 ask rule(s) to destination 'userSettings': ["Write"]
+[DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+[DEBUG] Creating shell snapshot for zsh (/bin/zsh)
+[DEBUG] Looking for shell config file: /Users/richardoliverbray/.zshrc
+[DEBUG] Snapshots directory: /Users/richardoliverbray/.claude/shell-snapshots
+[DEBUG] Creating snapshot at: /Users/richardoliverbray/.claude/shell-snapshots/snapshot-zsh-1760119377720-y8j92f.sh
+[DEBUG] Shell binary exists: true
+[DEBUG] Execution timeout: 10000ms
+[DEBUG] Writing to temp file: /Users/richardoliverbray/.claude/todos/07142557-99b4-4603-bb73-8c97feba84cc-agent-07142557-99b4-4603-bb73-8c97feba84cc.json.tmp.2602.1760119377721
+[DEBUG] Temp file written successfully, size: 2 bytes
+[DEBUG] Renaming /Users/richardoliverbray/.claude/todos/07142557-99b4-4603-bb73-8c97feba84cc-agent-07142557-99b4-4603-bb73-8c97feba84cc.json.tmp.2602.1760119377721 to /Users/richardoliverbray/.claude/todos/07142557-99b4-4603-bb73-8c97feba84cc-agent-07142557-99b4-4603-bb73-8c97feba84cc.json
+[DEBUG] File /Users/richardoliverbray/.claude/todos/07142557-99b4-4603-bb73-8c97feba84cc-agent-07142557-99b4-4603-bb73-8c97feba84cc.json written atomically
+[DEBUG] Writing to temp file: /Users/richardoliverbray/.claude.json.tmp.2602.1760119377749
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 683912 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/richardoliverbray/.claude.json.tmp.2602.1760119377749 to /Users/richardoliverbray/.claude.json
+[DEBUG] File /Users/richardoliverbray/.claude.json written atomically
+[DEBUG] Registered 0 hooks from 0 plugins
+[DEBUG] Loading skills from directories: managed=/Library/Application Support/ClaudeCode/.claude/skills, user=/Users/richardoliverbray/.claude/skills, project=/Users/richardoliverbray/mbc-site/.claude/skills
+[DEBUG] Loaded 0 skills total (managed: 0, user: 0, project: 0)
+[DEBUG] Total plugin commands loaded: 0
+[DEBUG] Total plugin skills loaded: 0
+[DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/Users/richardoliverbray/.local/share/mise/installs/claude-code/2.0.13/lib/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/arm64-darwin/rg)
+[DEBUG] Total plugin agents loaded: 0
+[DEBUG] MCP server "context7": Starting connection with timeout of 30000ms
+[DEBUG] Writing to temp file: /Users/richardoliverbray/.claude.json.tmp.2602.1760119377989
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 683912 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/richardoliverbray/.claude.json.tmp.2602.1760119377989 to /Users/richardoliverbray/.claude.json
+[DEBUG] File /Users/richardoliverbray/.claude.json written atomically
+[DEBUG] Executing hooks for SessionStart:startup
+[DEBUG] Getting matching hook commands for SessionStart with query: startup
+[DEBUG] Found 0 hook matchers in settings
+[DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+[DEBUG] Found 0 hook commands to execute
+[DEBUG] Writing to temp file: /Users/richardoliverbray/.claude.json.tmp.2602.1760119378034
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 683912 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/richardoliverbray/.claude.json.tmp.2602.1760119378034 to /Users/richardoliverbray/.claude.json
+[DEBUG] File /Users/richardoliverbray/.claude.json written atomically
+[DEBUG] Writing to temp file: /Users/richardoliverbray/.claude.json.tmp.2602.1760119378051
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 683913 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/richardoliverbray/.claude.json.tmp.2602.1760119378051 to /Users/richardoliverbray/.claude.json
+[DEBUG] File /Users/richardoliverbray/.claude.json written atomically
+[DEBUG] AutoUpdaterWrapper: Installation type: unknown, using native: false
+[DEBUG] performStartupChecks called, ENABLE_PLUGINS=true
+[DEBUG] Starting background plugin installations
+[DEBUG] performBackgroundPluginInstallations called
+[DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+[DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+[ERROR] MCP server "context7" Server stderr: docker: Cannot connect to the Docker daemon at unix:///Users/richardoliverbray/.docker/run/docker.sock. Is the docker daemon running?
+
+Run 'docker run --help' for more information
+[DEBUG] MCP server "context7": Connection failed after 431ms: MCP error -32000: Connection closed
+[ERROR] MCP server "context7" Connection failed: MCP error -32000: Connection closed
+[DEBUG] Slash commands included in SlashCommand tool:
+[DEBUG] Writing to temp file: /Users/richardoliverbray/.claude.json.tmp.2602.1760119378476
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 685459 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/richardoliverbray/.claude.json.tmp.2602.1760119378476 to /Users/richardoliverbray/.claude.json
+[DEBUG] File /Users/richardoliverbray/.claude.json written atomically
+[DEBUG] Writing to temp file: /Users/richardoliverbray/.claude.json.tmp.2602.1760119378491
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 685459 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/richardoliverbray/.claude.json.tmp.2602.1760119378491 to /Users/richardoliverbray/.claude.json
+[DEBUG] File /Users/richardoliverbray/.claude.json written atomically
+[DEBUG] Writing to temp file: /Users/richardoliverbray/.claude.json.tmp.2602.1760119378507
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 685459 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/richardoliverbray/.claude.json.tmp.2602.1760119378507 to /Users/richardoliverbray/.claude.json
+[DEBUG] File /Users/richardoliverbray/.claude.json written atomically
+[DEBUG] Writing to temp file: /Users/richardoliverbray/.claude.json.tmp.2602.1760119378523
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 685489 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/richardoliverbray/.claude.json.tmp.2602.1760119378523 to /Users/richardoliverbray/.claude.json
+[DEBUG] File /Users/richardoliverbray/.claude.json written atomically
+[DEBUG] Writing to temp file: /Users/richardoliverbray/.claude.json.tmp.2602.1760119378539
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 685594 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/richardoliverbray/.claude.json.tmp.2602.1760119378539 to /Users/richardoliverbray/.claude.json
+[DEBUG] File /Users/richardoliverbray/.claude.json written atomically
+[DEBUG] Shell snapshot created successfully (181635 bytes)
+[DEBUG] AutoUpdaterWrapper: Installation type: unknown, using native: false
+[DEBUG] AutoUpdaterWrapper: Installation type: unknown, using native: false
+[DEBUG] FileHistory: Added snapshot for 553dd522-8d16-4c7e-8d9b-3c6bd5e09a9d, tracking 0 files
+[DEBUG] Writing to temp file: /Users/richardoliverbray/.claude.json.tmp.2602.1760119395143
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 685635 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/richardoliverbray/.claude.json.tmp.2602.1760119395143 to /Users/richardoliverbray/.claude.json
+[DEBUG] File /Users/richardoliverbray/.claude.json written atomically
+[DEBUG] Writing to temp file: /Users/richardoliverbray/.claude.json.tmp.2602.1760119395164
+[DEBUG] Preserving file permissions: 100644
+[DEBUG] Temp file written successfully, size: 685620 bytes
+[DEBUG] Applied original permissions to temp file
+[DEBUG] Renaming /Users/richardoliverbray/.claude.json.tmp.2602.1760119395164 to /Users/richardoliverbray/.claude.json
+[DEBUG] File /Users/richardoliverbray/.claude.json written atomically
+[DEBUG] Metrics opt-out API response: enabled=true
+[DEBUG] BigQuery metrics exported successfully
+[DEBUG] API Response: {
+  "accepted_count": 3,
+  "rejected_count": 0
+}

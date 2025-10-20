@@ -74,5 +74,7 @@
   "statusLine": {
     "type": "command",
     "command": "python3 ~/.claude/statusline.py"
-  }
+  },
+  "alwaysThinkingEnabled": true,
+  "model": "haiku"
 }
