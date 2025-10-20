@@ -1,9 +1,0 @@
-.ruff_cache
-projects/
-statsig/
-todos/
-.DS_Store
-bash_commands.json
-bun_enforecment.json
-eslint_errors.json
-settings_old_2.json

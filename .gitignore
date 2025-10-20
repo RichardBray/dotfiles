@@ -1,13 +1,4 @@
 .secrets.fish
 
 # Claude directory ignores
-.claude/.ruff_cache
-.claude/shell-snapshots/
-.claude/projects/
-.claude/statsig/
-.claude/todos/
-.claude/.DS_Store
-.claude/bash_commands.json
-.claude/bun_enforecment.json
-.claude/eslint_errors.json
-.claude/settings_old_2.json
+.claude/
