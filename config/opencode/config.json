@@ -3,9 +3,12 @@
   "theme": "tokyonight",
   "model": "do-ollama/deepseek",
   "mcp": {
-    "mastra": {
+    "firecrawl-mcp": {
       "type": "local",
-      "command": ["npx", "-y", "@mastra/mcp-docs-server"]
+      "command": ["npx", "-y", "firecrawl-mcp"],
+      "environment": {
+        "FIRECRAWL_API_KEY": "FIRECRAWL_API_KEY"
+      }
     }
   },
   "provider": {

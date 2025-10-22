@@ -48,27 +48,41 @@ config.keys = {
   {
     key = '+',
     mods = 'CTRL',
-    action = wezterm.action.IncreaseFontSize,
+    action = wezterm.action.Multiple {
+      wezterm.action.IncreaseFontSize,
+      wezterm.action.EmitEvent('show-zoom'),
+    },
   },
   {
     key = '-',
     mods = 'CTRL',
-    action = wezterm.action.DecreaseFontSize,
+    action = wezterm.action.Multiple {
+      wezterm.action.DecreaseFontSize,
+      wezterm.action.EmitEvent('show-zoom'),
+    },
   },
   {
     key = '0',
     mods = 'CTRL',
-    action = wezterm.action.ResetFontSize,
+    action = wezterm.action.Multiple {
+      wezterm.action.ResetFontSize,
+      wezterm.action.EmitEvent('show-zoom'),
+    },
   },
 }
 
--- Show zoom percentage on font size change
-wezterm.on('window-resized', function(window, pane)
+-- Event handler to show zoom percentage
+wezterm.on('show-zoom', function(window, pane)
   local font_size = window:effective_font_size()
   local base_size = 19 -- Your default font size
   local zoom_percent = math.floor((font_size / base_size - 1) * 100 + 0.5)
   
-  if zoom_percent ~= 0 then
+  local message = zoom_percent == 0 and "100%" or string.format("%+d%%", zoom_percent)
+  wezterm.log_error("Zoom event: " .. message)
+  
+  if zoom_percent == 0 then
+    window:toast_notification("Zoom", "100%")
+  else
     window:toast_notification("Zoom", string.format("%+d%%", zoom_percent))
   end
 end)
