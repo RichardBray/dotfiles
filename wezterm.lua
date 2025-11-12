@@ -19,6 +19,7 @@ config.colors = {
 -- Appearance
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false
+-- config.tab_bar_at_bottom = true
 config.window_padding = {
   bottom = 0
 }
@@ -71,20 +72,11 @@ config.keys = {
   },
 }
 
--- Event handler to show zoom percentage
+-- Event handler to show font size
 wezterm.on('show-zoom', function(window, pane)
   local font_size = window:effective_font_size()
-  local base_size = 19 -- Your default font size
-  local zoom_percent = math.floor((font_size / base_size - 1) * 100 + 0.5)
   
-  local message = zoom_percent == 0 and "100%" or string.format("%+d%%", zoom_percent)
-  wezterm.log_error("Zoom event: " .. message)
-  
-  if zoom_percent == 0 then
-    window:toast_notification("Zoom", "100%")
-  else
-    window:toast_notification("Zoom", string.format("%+d%%", zoom_percent))
-  end
+  window:toast_notification("Font Size", string.format("%.1f", font_size))
 end)
 
 -- Ensure Option key sends composed characters (e.g., #)
