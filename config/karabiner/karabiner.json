@@ -1,8 +1,35 @@
-{
-    "profiles": [
+  {  "profiles": [
         {
             "complex_modifications": {
+                "parameters": {
+                    "basic.to_if_held_down_threshold_milliseconds": 150,
+                    "basic.to_delayed_action_delay_milliseconds": 150
+                },
                 "rules": [
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Chord k+l to Right Option + Right Control",
+                                "from": {
+                                    "simultaneous": [
+                                        { "key_code": "k" },
+                                        { "key_code": "l" }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "insensitive",
+                                        "key_up_order": "insensitive"
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_option",
+                                        "modifiers": ["right_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
                     {
                         "manipulators": [
                             {
@@ -146,6 +173,262 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Double tap a to shift+a - Second Tap",
+                                "conditions": [
+                                    { "name": "a_double_tap", "type": "variable_if", "value": 1 }
+                                ],
+                                "from": { "key_code": "a", "modifiers": { "optional": ["any"] } },
+                                "to": [
+                                    { "key_code": "a", "modifiers": ["left_shift"] },
+                                    { "set_variable": { "name": "a_double_tap", "value": 0 } }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Double tap a to shift+a - First Tap",
+                                "conditions": [
+                                    { "name": "a_double_tap", "type": "variable_if", "value": 0 }
+                                ],
+                                "from": { "key_code": "a", "modifiers": { "optional": ["any"] } },
+                                "to_if_held_down": [{ "key_code": "left_shift" }],
+                                "to_if_alone": [
+                                    { "set_variable": { "name": "a_double_tap", "value": 1 } }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_invoked": [
+                                        { "set_variable": { "name": "a_double_tap", "value": 0 } },
+                                        { "key_code": "a" }
+                                    ],
+                                    "to_if_canceled": [
+                                        { "set_variable": { "name": "a_double_tap", "value": 0 } }
+                                    ]
+                                },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Hold A for 200ms to left_shift",
+                                "from": {
+                                    "key_code": "a",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [{ "key_code": "a" }],
+                                "to_if_held_down": [{ "key_code": "left_shift" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Hold S for 100ms to left_control",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [{ "key_code": "s" }],
+                                "to_if_held_down": [{ "key_code": "left_control" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Hold D for 100ms to left_option",
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [{ "key_code": "d" }],
+                                "to_if_held_down": [{ "key_code": "left_option" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Double tap f for cmd + t (Camtasia only) - Second Tap",
+                                "conditions": [
+                                    { "name": "camtasia_f_double_tap", "type": "variable_if", "value": 1 },
+                                    { "bundle_identifiers": ["^com\\.techsmith\\.camtasia$"], "type": "frontmost_application_if" }
+                                ],
+                                "from": { "key_code": "f", "modifiers": { "optional": ["any"] } },
+                                "to": [
+                                    { "key_code": "t", "modifiers": ["left_command"] },
+                                    { "set_variable": { "name": "camtasia_f_double_tap", "value": 0 } }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Double tap f for cmd + t (Camtasia only) - First Tap",
+                                "conditions": [
+                                    { "name": "camtasia_f_double_tap", "type": "variable_if", "value": 0 },
+                                    { "bundle_identifiers": ["^com\\.techsmith\\.camtasia$"], "type": "frontmost_application_if" }
+                                ],
+                                "from": { "key_code": "f", "modifiers": { "optional": ["any"] } },
+                                "to_if_held_down": [ { "key_code": "left_command" } ],
+                                "to_if_alone": [
+                                    { "set_variable": { "name": "camtasia_f_double_tap", "value": 1 } }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_invoked": [
+                                        { "set_variable": { "name": "camtasia_f_double_tap", "value": 0 } },
+                                        { "key_code": "f" }
+                                    ],
+                                    "to_if_canceled": [
+                                        { "set_variable": { "name": "camtasia_f_double_tap", "value": 0 } }
+                                    ]
+                                },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Hold F for 100ms to left_command",
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [{ "key_code": "f" }],
+                                "to_if_held_down": [{ "key_code": "left_command" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Hold semicolon for 100ms to right_shift",
+                                "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [{ "key_code": "semicolon" }],
+                                "to_if_held_down": [{ "key_code": "right_shift" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Hold L for 100ms to right_control",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [{ "key_code": "l" }],
+                                "to_if_held_down": [{ "key_code": "right_control" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Hold K for 100ms to right_option",
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [{ "key_code": "k" }],
+                                "to_if_held_down": [{ "key_code": "right_option" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Hold J for 100ms to right_command",
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [{ "key_code": "j" }],
+                                "to_if_held_down": [{ "key_code": "right_command" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Control+E: Send L key (Camtasia only)",
+                                "from": {
+                                    "key_code": "e",
+                                    "modifiers": { "mandatory": ["left_control"] }
+                                },
+                                "to": [{ "key_code": "l" }],
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.techsmith\\.camtasia$"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Left command + R activates the delete key (Camtasia only)",
+                                "from": {
+                                    "key_code": "r",
+                                    "modifiers": { "mandatory": ["left_control", "left_command"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic",
+                        "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.techsmith\\.camtasia$"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Control+R simultaneous: Send delete key (Camtasia only)",
+                                "from": {
+                                    "key_code": "r",
+                                    "modifiers": { "mandatory": ["left_control"] }
+                                },
+                                "to": [{ "key_code": "delete_or_backspace" }],
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.techsmith\\.camtasia$"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 ]
             },
@@ -173,16 +456,16 @@
                 }
             ],
             "name": "Default profile",
+            "parameters": { "basic.to_if_held_down_threshold_milliseconds": 100 },
             "selected": true,
             "simple_modifications": [
                 {
-                    "from": { "key_code": "grave_accent_and_tilde" },
-                    "to": [{ "key_code": "non_us_backslash" }]
+                    "from": { "key_code": "caps_lock" },
+                    "to": [{ "key_code": "escape" }]
                 },
                 {
-                    "from": { "key_code": "caps_lock" },
-                    "to": [{ "key_code": "escape" }],
-                    "disable_built_in_keyboard_if_exists": true
+                    "from": { "key_code": "grave_accent_and_tilde" },
+                    "to": [{ "key_code": "non_us_backslash" }]
                 }
             ],
             "virtual_hid_keyboard": {
