@@ -2,8 +2,8 @@
         {
             "complex_modifications": {
                 "parameters": {
-                    "basic.to_if_held_down_threshold_milliseconds": 100,
-                    "basic.to_delayed_action_delay_milliseconds": 100
+                    "basic.to_if_held_down_threshold_milliseconds": 150,
+                    "basic.to_delayed_action_delay_milliseconds": 150
                 },
                 "rules": [
                     {
@@ -174,8 +174,6 @@
                             }
                         ]
                     },
-                    
-                    
                     {
                         "manipulators": [
                             {
