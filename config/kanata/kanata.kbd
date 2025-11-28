@@ -1,5 +1,8 @@
 (defcfg
   process-unmapped-keys yes
+  macos-dev-names-exclude (
+    "MX Master"
+  )
 )
 
 (defvar
@@ -8,10 +11,11 @@
 )
 
 (defsrc
-  a s d f j k l ;
+  caps a s d f j k l ;
 )
 
 (deflayer base
+  esc
   (tap-hold $tap-timeout $hold-timeout a lsft)
   (tap-hold $tap-timeout $hold-timeout s lctl)
   (tap-hold $tap-timeout $hold-timeout d lalt)
