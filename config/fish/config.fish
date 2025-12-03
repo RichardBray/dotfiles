@@ -66,5 +66,10 @@ abbr gsp 'git stash pop'
 abbr cuca 'uv run --with "numpy,pyaudio" ~/content-tools/scripts/virtual_mic_delay.py'
 abbr transcribe '~/whisper_app/index.js ~/Downloads/"$input_name"_ff.mp4'
 
+# Kanata control aliases
+abbr krestart 'sudo launchctl stop com.kanata.keyboard; and sudo launchctl start com.kanata.keyboard'
+abbr kstop 'sudo launchctl stop com.kanata.keyboard'
+abbr kstart 'sudo launchctl start com.kanata.keyboard'
+
 
 

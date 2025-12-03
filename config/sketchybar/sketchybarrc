@@ -141,9 +141,20 @@ sketchybar --add item front_app left \
                            background.drawing=on \
                            background.padding_left=10 \
                            label.color=$LABEL_COLOR \
-                           label.font="SF Pro:Bold:15.0" \
                            script="$PLUGIN_DIR/front_app.sh" \
            --subscribe front_app front_app_switched
+
+# Add kanata layer item
+# sketchybar --add item kanata_layer right \
+#            --set kanata_layer label="base" \
+#                               icon.drawing=off \
+#                               background.color=0xff444444 \
+#                               label.color=0xffffffff \
+#                               label.font="SF Mono:Bold:12.0"
+# Update layer every second
+# sketchybar --add event kanata_layer_change \
+#            --subscribe kanata_layer_change system_woke \
+#            --set kanata_layer update_freq=1 script="$HOME/.config/kanata/get_layer.sh"
 
 ##### Right Side Items #####
 

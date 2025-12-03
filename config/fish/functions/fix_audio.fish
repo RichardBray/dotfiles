@@ -17,7 +17,7 @@ function fix_audio --description "Fix audio processing with clean_audio.py scrip
     end
 
     echo "Processing audio with audio file: $audio_file, preset: $preset"
-    uv run --with requests ~/content-tools/scripts/clean_audio.py ~/Downloads/"$audio_file" --preset "$preset"
+    uv run --offline --with requests ~/content-tools/scripts/clean_audio.py ~/Downloads/"$audio_file" --preset "$preset"
 
     say "Audio processing complete"
 end
