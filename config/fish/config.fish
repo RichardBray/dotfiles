@@ -68,7 +68,7 @@ abbr transcribe '~/whisper_app/index.js ~/Downloads/"$input_name"_ff.mp4'
 
 # Kanata control aliases
 abbr krestart 'sudo launchctl stop com.kanata.keyboard; and sudo launchctl start com.kanata.keyboard'
-abbr kstop 'sudo launchctl stop com.kanata.keyboard'
+abbr kstop 'sudo launchctl bootout com.kanata.keyboard'
 abbr kstart 'sudo launchctl start com.kanata.keyboard'
 
 

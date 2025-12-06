@@ -144,6 +144,16 @@ sketchybar --add item front_app left \
                            script="$PLUGIN_DIR/front_app.sh" \
            --subscribe front_app front_app_switched
 
+sketchybar --add item kanata_layer left \
+           --set kanata_layer update_freq=0 \
+                              background.color=$ITEM_BG_COLOR \
+                              background.drawing=on \
+                              background.padding_left=10 \
+                              script="$PLUGIN_DIR/kanata_layer.sh" \
+                              icon=󰌌 label=BASE \ 
+                              label.color=$BLUE \
+                              icon.color=$BLUE \
+
 # Add kanata layer item
 # sketchybar --add item kanata_layer right \
 #            --set kanata_layer label="base" \
