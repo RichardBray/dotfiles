@@ -27,17 +27,12 @@ fish_add_path -a "/Applications/WezTerm.app/Contents/MacOS"
 # Aliases
 alias vim='nvim'
 alias vi='nvim'
-alias claude-squad='cs'
 alias gpsup='git push --set-upstream origin main'
-alias t='tmux'
-alias ta='tmux attach'
-alias tl='tmux list-sessions'
-alias ts='tmux new-session'
-alias tk='tmux kill-session'
 alias cld='claude --dangerously-skip-permissions'
 alias op='opencode'
 alias lg='lazygit'
 alias cd='z'
+alias ls='eza'
 
 # Git abbreviations
 abbr gst 'git status'
@@ -73,3 +68,7 @@ abbr kstart 'sudo launchctl start com.kanata.keyboard'
 
 
 
+set -gx PATH /nix/var/nix/profiles/system/sw/bin $PATH
+set -gx PATH /run/current-system/sw/bin $PATH
+set -gx NIX_PATH darwin=$HOME/.nix-defexpr/channels/nixpkgs-darwin:darwin-config=$HOME/.nixpkgs/darwin-configuration.nix $NIX_PATH
+set -gx NIX_PATH darwin=$HOME/.config/nix:$NIX_PATH

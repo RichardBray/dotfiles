@@ -6,7 +6,7 @@ ITEM="kanata_layer"
 
 # Define your layers (add as many as you like)
 # Format: "layer_name:color:label:icon"
-LAYERS="base:0xff8aadf4:BASE:󰌌 editor:0xffa6da95:EDIT:󰏒"
+LAYERS="base:0xff8aadf4:BASE:󰌌 editor:0xffa6da95:EDITOR:󰏒"
 
 # Function to update the item
 update_item() {

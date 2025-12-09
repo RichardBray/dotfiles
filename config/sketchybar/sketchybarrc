@@ -150,9 +150,9 @@ sketchybar --add item kanata_layer left \
                               background.drawing=on \
                               background.padding_left=10 \
                               script="$PLUGIN_DIR/kanata_layer.sh" \
-                              icon=󰌌 label=BASE \ 
                               label.color=$BLUE \
                               icon.color=$BLUE \
+                              icon=󰌌 label=BASE
 
 # Add kanata layer item
 # sketchybar --add item kanata_layer right \
