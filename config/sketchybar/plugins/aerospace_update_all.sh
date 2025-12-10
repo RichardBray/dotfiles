@@ -4,6 +4,7 @@
 # This script is called by aerospace's exec-on-workspace-change
 
 # Source colors
+CONFIG_DIR="$(dirname "$0")/.."
 source "$CONFIG_DIR/colors.sh"
 
 # Get the current focused workspace

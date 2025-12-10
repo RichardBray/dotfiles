@@ -13,6 +13,8 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
   let
     configuration = { pkgs, ... }: {
+
+      nixpkgs.config.allowUnfree = true;
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
@@ -31,6 +33,7 @@
           pkgs.fish
           pkgs.eza
           pkgs.mise
+          pkgs.claude-code
         ];
 
       homebrew = {
@@ -52,10 +55,13 @@
           "shortcat"
           "macwhisper"
         ];
-        onActivation.cleanup = "zap";
         masApps = {
           "Keystroke Pro" = 15722062242;
         };
+
+        onActivation.cleanup = "zap";
+        onActivation.autoUpdate = true;
+        onActivation.upgrade = true;
       };
 
       system.defaults = {

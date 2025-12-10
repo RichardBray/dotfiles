@@ -1,8 +1,7 @@
-#!/bin/bash
-
 # Modern SketchyBar Configuration
 # A clean, developer-friendly setup with commonly used widgets
 
+CONFIG_DIR="$(dirname "$0")"
 source "$CONFIG_DIR/colors.sh"
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
@@ -113,14 +112,7 @@ else
 fi
 
 # Create bracket around workspace area for black background
-sketchybar --add bracket workspace_bracket space.7 divider.left space.1 space.2 space.3 space.4 space.5 space.6 \
-           --set workspace_bracket \
-           background.color=$ITEM_BG_COLOR \
-           # background.corner_radius=8 \
-           background.height=32 \
-           # background.border_width=2 \
-           # background.border_color=0xffffffff \
-           background.drawing=on
+sketchybar --add bracket workspace_bracket space.7 divider.left space.1 space.2 space.3 space.4 space.5 space.6 --set workspace_bracket background.color=$ITEM_BG_COLOR background.height=32 background.drawing=on
 
 # Initialize aerospace workspace highlighting
 $CONFIG_DIR/plugins/aerospace_update_all.sh
