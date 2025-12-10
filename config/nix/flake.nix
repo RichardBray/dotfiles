@@ -16,14 +16,36 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
-        [ pkgs.vim
+        [ 
+          pkgs.neovim
+          pkgs.fzf
+          pkgs.ripgrep
+          pkgs.jq
+          pkgs.lazygit
+          pkgs.zoxide
+          pkgs.superfile
+          pkgs.opencode
+          pkgs.ffmpeg_7
+          pkgs.kanata
+          pkgs.wezterm
+          pkgs.sketchybar
+          pkgs.raycast
+          pkgs.slack
         ];
 
       homebrew = {
         enable = true;
-        casks = [ "firefox"];
+        casks = [
+          "aerospace", 
+          "camtasia", 
+          "arc", 
+          "spotify",
+          "elgato-camera-hub",
+          "elgato-control-center",
+          "vb-cable",
+        ];
         masApps = {
-          "Capcut" = 1500855883;
+          "Keystroke Pro" = 1500855883; # TODO change
         };
       };
 
