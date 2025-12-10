@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# Modern SketchyBar Configuration
+# A clean, developer-friendly setup with commonly used widgets
+
+CONFIG_DIR="$(dirname "$0")"
+source "$CONFIG_DIR/colors.sh"
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+##### Bar Appearance #####
+bar=(
+  height=40
+  color=$BAR_COLOR
+  shadow=on
+  position=top
+  sticky=on
+  padding_right=10
+  padding_left=10
+  margin=10
+)
+sketchybar --bar "${bar[@]}"
+
+##### Defaults #####
+default=(
+  icon.font="SF Pro:Semibold:17.0"
+  label.font="SF Pro:Semibold:15.0"
+  icon.color=$ICON_COLOR
+  label.color=$LABEL_COLOR
+  icon.padding_left=4
+  label.padding_left=4
+  background.height=26
+)
+
+# Create bracket around workspace area for black background
+sketchybar --add bracket workspace_bracket space.7 divider.left space.1 space.2 space.3 space.4 space.5 space.6 --set workspace_bracket background.color=$ITEM_BG_COLOR background.height=32 background.drawing=on
+
+# Initialize aerospace workspace highlighting
+$CONFIG_DIR/plugins/aerospace_update_all.sh
+
+##### Finalizing Setup #####
+sketchybar --hotload on
+sketchybar --update
+
+# Start sketchybar daemon
+sketchybar

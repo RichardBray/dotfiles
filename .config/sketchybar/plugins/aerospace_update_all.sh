@@ -33,4 +33,3 @@ for workspace in 7 1 2 3 4 5 6; do
           label.color=$LABEL_COLOR
     fi
 done
-

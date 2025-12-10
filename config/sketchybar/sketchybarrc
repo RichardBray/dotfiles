@@ -212,6 +212,15 @@ sketchybar --add item memory right \
            --set memory update_freq=5 \
                        script="$PLUGIN_DIR/memory.sh"
 
+# Aerospace workspace change event listener
+sketchybar --add item aerospace_event right \
+           --set aerospace_event drawing=off \
+                       script="$PLUGIN_DIR/aerospace_update_all.sh \$FOCUSED_WORKSPACE" \
+           --subscribe aerospace_event aerospace_workspace_change
+
 ##### Finalizing Setup #####
 sketchybar --hotload on
 sketchybar --update
+
+# Start sketchybar daemon
+sketchybar

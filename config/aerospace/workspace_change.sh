@@ -6,5 +6,6 @@
 CURRENT_WORKSPACE="$(aerospace list-workspaces --focused)"
 NEXT_WORKSPACE=$1
 
-sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE="$NEXT_WORKSPACE" PREV_WORKSPACE="$CURRENT_WORKSPACE"
+# Update sketchybar directly
+/Users/richardoliverbray/.config/sketchybar/plugins/aerospace_update_all.sh "$NEXT_WORKSPACE"
 aerospace workspace "$NEXT_WORKSPACE"

@@ -8,13 +8,44 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
   let
     configuration = { pkgs, ... }: {
 
       nixpkgs.config.allowUnfree = true;
+
+      # Symlink sketchybar config from dotfiles
+      home.file.".config/sketchybar/sketchybarrc" = {
+        source = /Users/richardoliverbray/dotfiles/.config/sketchybar/sketchybarrc;
+        executable = true;
+      };
+
+      # Symlink sketchybar colors
+      home.file.".config/sketchybar/colors.sh" = {
+        source = /Users/richardoliverbray/dotfiles/.config/sketchybar/colors.sh;
+      };
+
+      # Symlink sketchybar plugins
+      home.file.".config/sketchybar/plugins" = {
+        source = /Users/richardoliverbray/dotfiles/.config/sketchybar/plugins;
+        recursive = true;
+      };
+
+      # Symlink launch agent
+      home.file."Library/LaunchAgents/com.user.sketchybar.plist" = {
+        source = /Users/richardoliverbray/dotfiles/Library/LaunchAgents/com.user.sketchybar.plist;
+};
+
+      # Symlink sketchybar main config
+      home.file.".config/sketchybar/sketchybarrc" = {
+        source = /Users/richardoliverbray/dotfiles/.config/sketchybar/sketchybarrc;
+        executable = true;
+      };
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
@@ -96,12 +127,41 @@
       modules = [ 
         configuration
         nix-homebrew.darwinModules.nix-homebrew
+        home-manager.darwinModules.home-manager
         {
           nix-homebrew = {
             enable = true;
             enableRosetta = true;
             user = "richardoliverbray";
             autoMigrate = true;
+          };
+          
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.richardoliverbray = { pkgs, ... }: {
+            home.stateVersion = "24.05";
+            
+            # Home Manager configuration
+            programs.sketchybar = {
+              enable = true;
+              config = {
+                # Your sketchybar configuration here
+              };
+            };
+            
+            # Launch agents
+            launchd.agents = {
+              sketchybar = {
+                enable = true;
+                config = {
+                  ProgramArguments = [ "/Users/richardoliverbray/.config/sketchybar/sketchybarrc" ];
+                  RunAtLoad = true;
+                  KeepAlive = true;
+                  StandardOutPath = "/tmp/sketchybar.out.log";
+                  StandardErrorPath = "/tmp/sketchybar.err.log";
+                };
+              };
+            };
           };
         }
       ];
