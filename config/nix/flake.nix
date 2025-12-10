@@ -27,25 +27,34 @@
           pkgs.opencode
           pkgs.ffmpeg_7
           pkgs.kanata
-          pkgs.wezterm
           pkgs.sketchybar
-          pkgs.raycast
-          pkgs.slack
+          pkgs.fish
+          pkgs.eza
+          pkgs.mise
         ];
 
       homebrew = {
         enable = true;
-        casks = [
-          "aerospace", 
-          "camtasia", 
-          "arc", 
-          "spotify",
-          "elgato-camera-hub",
-          "elgato-control-center",
-          "vb-cable",
+        taps = [
+          "nikitabobko/tap"
         ];
+        casks = [
+          "aerospace"
+          "camtasia"
+          "arc"
+          "spotify"
+          "elgato-camera-hub"
+          "elgato-control-center"
+          "vb-cable"
+          "slack"
+          "raycast"
+          "wezterm"
+          "shortcat"
+          "macwhisper"
+        ];
+        onActivation.cleanup = "zap";
         masApps = {
-          "Keystroke Pro" = 1500855883; # TODO change
+          "Keystroke Pro" = 15722062242;
         };
       };
 
