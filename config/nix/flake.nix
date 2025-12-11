@@ -65,6 +65,7 @@
           pkgs.eza
           pkgs.mise
           pkgs.claude-code
+          pkgs.portaudio
         ];
 
       homebrew = {
@@ -108,6 +109,65 @@
 
       # Enable alternative shell support in nix-darwin.
       programs.fish.enable = true;
+      
+      # Set fish as the default user shell
+      users.users."richardoliverbray".shell = pkgs.fish;
+      
+      # Manage shell profile to prevent permission issues
+      environment.shellInit = ''
+        # Source Nix-managed environment
+        if test -f /etc/static/bash/bashrc
+          source /etc/static/bash/bashrc
+        end
+        
+        # Set up environment variables
+        set -gx PATH /run/current-system/sw/bin $PATH
+        set -gx EDITOR nvim
+        set -gx VISUAL nvim
+      '';
+      
+      # Configure fish shell
+      programs.fish.shellInit = ''
+        # Fish-specific initialization
+        set -gx fish_greeting ""
+        set -gx fish_key_bindings fish_vi_key_bindings
+        
+        # Add Nix-managed packages to PATH
+        fish_add_path /run/current-system/sw/bin
+      '';
+      
+      # Symlink fish configuration from dotfiles
+      home.file.".config/fish/config.fish" = {
+        source = /Users/richardoliverbray/dotfiles/.config/fish/config.fish;
+      };
+      
+      home.file.".config/fish/functions" = {
+        source = /Users/richardoliverbray/dotfiles/.config/fish/functions;
+        recursive = true;
+      };
+      
+      home.file.".config/fish/completions" = {
+        source = /Users/richardoliverbray/dotfiles/.config/fish/completions;
+        recursive = true;
+      };
+      
+      # Create a proper .profile to avoid permission issues
+      system.activationScripts.profile.text = ''
+        # Create a clean .profile file
+        echo "# Managed by Nix" > /Users/richardoliverbray/.profile
+        echo "export PATH=/run/current-system/sw/bin:\$PATH" >> /Users/richardoliverbray/.profile
+        echo "export SHELL=/run/current-system/sw/bin/fish" >> /Users/richardoliverbray/.profile
+        chown richardoliverbray:staff /Users/richardoliverbray/.profile
+        chmod 644 /Users/richardoliverbray/.profile
+        
+        # Set default shell to Nix-managed fish
+        if [ "$(dscl . -read /Users/richardoliverbray UserShell | awk '{print \$2}')" != "/run/current-system/sw/bin/fish" ]; then
+          echo "Setting default shell to Nix fish..."
+          dscl . -change /Users/richardoliverbray UserShell /opt/homebrew/bin/fish /run/current-system/sw/bin/fish 2>/dev/null || \
+          dscl . -change /Users/richardoliverbray UserShell /bin/bash /run/current-system/sw/bin/fish 2>/dev/null || \
+          dscl . -change /Users/richardoliverbray UserShell /bin/zsh /run/current-system/sw/bin/fish
+        fi
+      '';
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
