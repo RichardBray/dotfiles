@@ -81,6 +81,9 @@
 
       # Enable alternative shell support in nix-darwin.
       programs.fish.enable = true;
+
+      # Add fish to /etc/shells
+      environment.shells = [ pkgs.fish ];
       
       # Set fish as the default user shell
       users.users."richardoliverbray".shell = pkgs.fish;
@@ -125,21 +128,19 @@
         ln -sf /Users/richardoliverbray/dotfiles/Library/LaunchAgents/com.user.sketchybar.plist /Users/richardoliverbray/Library/LaunchAgents/com.user.sketchybar.plist
       '';
       
-      # Create a proper .profile to avoid permission issues
+      # Ensure fish shell is properly configured
       system.activationScripts.profile.text = ''
-        # Create a clean .profile file
-        echo "# Managed by Nix" > /Users/richardoliverbray/.profile
-        echo "export PATH=/run/current-system/sw/bin:\$PATH" >> /Users/richardoliverbray/.profile
-        echo "export SHELL=/run/current-system/sw/bin/fish" >> /Users/richardoliverbray/.profile
-        chown richardoliverbray:staff /Users/richardoliverbray/.profile
-        chmod 644 /Users/richardoliverbray/.profile
+        # Remove problematic .profile symlink if it exists
+        if [ -L /Users/richardoliverbray/.profile ]; then
+          echo "Removing existing .profile symlink..."
+          rm -f /Users/richardoliverbray/.profile
+        fi
         
-        # Set default shell to Nix-managed fish
+        # Trigger shell change if it doesn't match the Nix path
         if [ "$(dscl . -read /Users/richardoliverbray UserShell | awk '{print \$2}')" != "/run/current-system/sw/bin/fish" ]; then
           echo "Setting default shell to Nix fish..."
-          dscl . -change /Users/richardoliverbray UserShell /opt/homebrew/bin/fish /run/current-system/sw/bin/fish 2>/dev/null || \
-          dscl . -change /Users/richardoliverbray UserShell /bin/bash /run/current-system/sw/bin/fish 2>/dev/null || \
-          dscl . -change /Users/richardoliverbray UserShell /bin/zsh /run/current-system/sw/bin/fish
+          # Use -create to overwrite the value regardless of previous state
+          dscl . -create /Users/richardoliverbray UserShell /run/current-system/sw/bin/fish
         fi
       '';
 
