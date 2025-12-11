@@ -8,44 +8,13 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
-  let
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+    let
     configuration = { pkgs, ... }: {
 
       nixpkgs.config.allowUnfree = true;
-
-      # Symlink sketchybar config from dotfiles
-      home.file.".config/sketchybar/sketchybarrc" = {
-        source = /Users/richardoliverbray/dotfiles/.config/sketchybar/sketchybarrc;
-        executable = true;
-      };
-
-      # Symlink sketchybar colors
-      home.file.".config/sketchybar/colors.sh" = {
-        source = /Users/richardoliverbray/dotfiles/.config/sketchybar/colors.sh;
-      };
-
-      # Symlink sketchybar plugins
-      home.file.".config/sketchybar/plugins" = {
-        source = /Users/richardoliverbray/dotfiles/.config/sketchybar/plugins;
-        recursive = true;
-      };
-
-      # Symlink launch agent
-      home.file."Library/LaunchAgents/com.user.sketchybar.plist" = {
-        source = /Users/richardoliverbray/dotfiles/Library/LaunchAgents/com.user.sketchybar.plist;
-};
-
-      # Symlink sketchybar main config
-      home.file.".config/sketchybar/sketchybarrc" = {
-        source = /Users/richardoliverbray/dotfiles/.config/sketchybar/sketchybarrc;
-        executable = true;
-      };
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
@@ -139,20 +108,22 @@
         fish_add_path /run/current-system/sw/bin
       '';
       
-      # Symlink fish configuration from dotfiles
-      home.file.".config/fish/config.fish" = {
-        source = /Users/richardoliverbray/dotfiles/.config/fish/config.fish;
-      };
-      
-      home.file.".config/fish/functions" = {
-        source = /Users/richardoliverbray/dotfiles/.config/fish/functions;
-        recursive = true;
-      };
-      
-      home.file.".config/fish/completions" = {
-        source = /Users/richardoliverbray/dotfiles/.config/fish/completions;
-        recursive = true;
-      };
+      # Symlink dotfiles
+      system.activationScripts.symlinkDotfiles = ''
+        # Create directories if they don't exist
+        mkdir -p /Users/richardoliverbray/.config
+        mkdir -p /Users/richardoliverbray/Library/LaunchAgents
+        
+        # Symlink sketchybar configuration
+        ln -sf /Users/richardoliverbray/dotfiles/.config/sketchybar /Users/richardoliverbray/.config/sketchybar
+        chmod +x /Users/richardoliverbray/.config/sketchybar/sketchybarrc
+        
+        # Symlink fish configuration
+        ln -sf /Users/richardoliverbray/dotfiles/.config/fish /Users/richardoliverbray/.config/fish
+        
+        # Symlink launch agent
+        ln -sf /Users/richardoliverbray/dotfiles/Library/LaunchAgents/com.user.sketchybar.plist /Users/richardoliverbray/Library/LaunchAgents/com.user.sketchybar.plist
+      '';
       
       # Create a proper .profile to avoid permission issues
       system.activationScripts.profile.text = ''
@@ -190,41 +161,12 @@
       modules = [ 
         configuration
         nix-homebrew.darwinModules.nix-homebrew
-        home-manager.darwinModules.home-manager
         {
           nix-homebrew = {
             enable = true;
             enableRosetta = true;
             user = "richardoliverbray";
             autoMigrate = true;
-          };
-          
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.richardoliverbray = { pkgs, ... }: {
-            home.stateVersion = "24.05";
-            
-            # Home Manager configuration
-            programs.sketchybar = {
-              enable = true;
-              config = {
-                # Your sketchybar configuration here
-              };
-            };
-            
-            # Launch agents
-            launchd.agents = {
-              sketchybar = {
-                enable = true;
-                config = {
-                  ProgramArguments = [ "/Users/richardoliverbray/.config/sketchybar/sketchybarrc" ];
-                  RunAtLoad = true;
-                  KeepAlive = true;
-                  StandardOutPath = "/tmp/sketchybar.out.log";
-                  StandardErrorPath = "/tmp/sketchybar.err.log";
-                };
-              };
-            };
           };
         }
       ];
