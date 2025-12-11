@@ -73,6 +73,9 @@
         taps = [
           "nikitabobko/tap"
         ];
+        brews = [
+          "displayplacer"
+        ];
         casks = [
           "aerospace"
           "camtasia"
