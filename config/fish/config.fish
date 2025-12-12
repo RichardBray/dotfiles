@@ -62,9 +62,11 @@ abbr cuca 'uv run --with "numpy,pyaudio" ~/content-tools/scripts/virtual_mic_del
 abbr transcribe '~/whisper_app/index.js ~/Downloads/"$input_name"_ff.mp4'
 
 # Kanata control aliases
-abbr krestart 'sudo launchctl stop com.kanata.keyboard; and sudo launchctl start com.kanata.keyboard'
-abbr kstop 'sudo launchctl bootout com.kanata.keyboard'
-abbr kstart 'sudo launchctl start com.kanata.keyboard'
+abbr kdurgod 'sudo kanata --cfg ~/.config/kanata/durgod.kbd --port 7070' 
+abbr kdefault 'sudo kanata --cfg ~/.config/kanata/default.kbd --port 7070' 
+
+# Nix aliases
+abbr darwin-rebuild 'sudo darwin-rebuild switch --flake ~/dotfiles/config/nix#my-mac'
 
 
 
