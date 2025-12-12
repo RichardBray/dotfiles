@@ -27,12 +27,20 @@ fish_add_path -a "/Applications/WezTerm.app/Contents/MacOS"
 # Aliases
 alias vim='nvim'
 alias vi='nvim'
+alias \vi='vi'
 alias gpsup='git push --set-upstream origin main'
 alias cld='claude --dangerously-skip-permissions'
 alias op='opencode'
 alias lg='lazygit'
+alias spf='superfile'
 alias cd='z'
-alias ls='eza'
+alias \cd='cd'
+# eza aliases
+alias ls='eza --icons=always'
+alias lstr='eza -ls=time --icons=always'
+alias tree='eza -l --tree --no-user --no-permissions --no-filesize --icons=always'
+alias \ls='ls'
+
 
 # Git abbreviations
 abbr gst 'git status'
@@ -74,3 +82,4 @@ set -gx PATH /nix/var/nix/profiles/system/sw/bin $PATH
 set -gx PATH /run/current-system/sw/bin $PATH
 set -gx NIX_PATH darwin=$HOME/.nix-defexpr/channels/nixpkgs-darwin:darwin-config=$HOME/.nixpkgs/darwin-configuration.nix $NIX_PATH
 set -gx NIX_PATH darwin=$HOME/.config/nix:$NIX_PATH
+set -x EZA_CONFIG_DIR /Users/richardoliverbray/.config/eza
