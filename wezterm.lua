@@ -7,15 +7,21 @@ config.line_height = 1.1
 config.font = wezterm.font "BlexMono Nerd Font Mono"
 config.color_scheme = 'tokyonight_night'
 config.window_close_confirmation = 'NeverPrompt' -- For quitting WezTerm
+
+-- Performance Hack
 config.max_fps = 120
 config.animation_fps = 120
 
 -- Cursor
 config.colors = {
   cursor_bg = '#7aa2f7',
-  cursor_border = '#7aa2f7'
+  cursor_border = '#7aa2f7',
 }
 
+config.inactive_pane_hsb = {
+  saturation = 0.5,
+  brightness = 0.3,
+}
 -- Appearance
 config.window_decorations = "RESIZE"
 config.enable_tab_bar = false
@@ -72,26 +78,8 @@ config.keys = {
   },
 }
 
--- Event handler to show font size
-wezterm.on('show-zoom', function(window, pane)
-  local font_size = window:effective_font_size()
-  
-  window:toast_notification("Font Size", string.format("%.1f", font_size))
-end)
 
 -- Ensure Option key sends composed characters (e.g., #)
 config.send_composed_key_when_left_alt_is_pressed = true
-
--- SSH
-config.ssh_domains = {
-  {
-    name = 'hetzner',
-    remote_address = '157.180.112.216',
-    username = 'root',
-    ssh_option = {
-      identityfile = '~/.ssh/hetzner',
-    }
-  },
-}
 
 return config
