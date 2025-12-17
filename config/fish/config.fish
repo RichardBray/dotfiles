@@ -37,7 +37,7 @@ alias cd='z'
 alias \cd='cd'
 # eza aliases
 alias ls='eza --icons=always'
-alias lstr='eza -ls=time --icons=always'
+alias lstr='eza -ls=time --icons=always --no-permissions --no-filesize --no-user'
 alias tree='eza -l --tree --no-user --no-permissions --no-filesize --icons=always'
 alias \ls='ls'
 

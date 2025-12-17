@@ -46,18 +46,19 @@
           "displayplacer"
         ];
         casks = [
-          "aerospace"
-          "camtasia"
-          "arc"
-          "spotify"
-          "elgato-camera-hub"
-          "elgato-control-center"
-          "vb-cable"
-          "slack"
-          "raycast"
+          "aerospace",
+          "affinity",
+          "arc",
+          "camtasia",
+          "elgato-camera-hub",
+          "elgato-control-center",
+          "macwhisper",
+          "raycast",
+          "shortcat",
+          "slack",
+          "spotify",
+          "vb-cable",
           "wezterm"
-          "shortcat"
-          "macwhisper"
         ];
         masApps = {
           "Keystroke Pro" = 15722062242;
