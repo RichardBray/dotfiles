@@ -35,6 +35,8 @@
           pkgs.mise
           pkgs.claude-code
           pkgs.portaudio
+          pkgs.atuin
+          pkgs.helix
         ];
 
       homebrew = {
@@ -46,18 +48,18 @@
           "displayplacer"
         ];
         casks = [
-          "aerospace",
-          "affinity",
-          "arc",
-          "camtasia",
-          "elgato-camera-hub",
-          "elgato-control-center",
-          "macwhisper",
-          "raycast",
-          "shortcat",
-          "slack",
-          "spotify",
-          "vb-cable",
+          "aerospace"
+          "affinity"
+          "arc"
+          "camtasia"
+          "elgato-camera-hub"
+          "elgato-control-center"
+          "macwhisper"
+          "raycast"
+          "shortcat"
+          "slack"
+          "spotify"
+          "vb-cable"
           "wezterm"
         ];
         masApps = {
