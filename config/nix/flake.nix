@@ -37,6 +37,7 @@
           pkgs.portaudio
           pkgs.atuin
           pkgs.helix
+          pkgs.atuin
         ];
 
       homebrew = {
