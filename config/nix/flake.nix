@@ -47,6 +47,7 @@
         ];
         brews = [
           "displayplacer"
+          "starship"
         ];
         casks = [
           "aerospace"
@@ -55,6 +56,8 @@
           "camtasia"
           "elgato-camera-hub"
           "elgato-control-center"
+          "font-blex-mono-nerd-font"
+          "karabiner-elements"
           "macwhisper"
           "raycast"
           "shortcat"
@@ -64,7 +67,7 @@
           "wezterm"
         ];
         masApps = {
-          "Keystroke Pro" = 15722062242;
+          "Keystroke Pro" = 1572206224;
         };
 
         onActivation.cleanup = "zap";
@@ -76,9 +79,38 @@
         dock.autohide = true;
         dock.tilesize = 45;
         dock.magnification = false;
+        dock.persistent-apps = [];
       };
 
-      system.primaryUser = "Richard Oliver Bray";
+      system.activationScripts.touchbar.text = ''
+        defaults write com.apple.touchbar.agent PresentationModeGlobal "fullControlStrip"
+        killall ControlCenter 2>/dev/null || true
+      '';
+
+      system.primaryUser = "robray";
+
+      system.activationScripts.dotfiles.text = let
+	homeDir = "/Users/robray";
+	dotfilesDir = "${homeDir}/dotfiles/config";
+	  symlinks = [
+	    ["${dotfilesDir}/wezterm.lua" "${homeDir}/.config/wezterm/wezterm.lua"]
+	    ["${dotfilesDir}/nvim" "${homeDir}/.config/nvim"]
+	    ["${dotfilesDir}/fish" "${homeDir}/.config/fish"]
+	  ];
+	  mkSymlinkCmd = link: let
+	    source = builtins.elemAt link 0;
+	    target = builtins.elemAt link 1;
+	  in ''
+	    echo "Creating symlink: ${source} -> ${target}"
+	    mkdir -p "$(dirname "${target}")"
+	    ln -sfn "${source}" "${target}"
+	  '';
+	  
+	in ''
+	  echo "Setting up dotfiles symlinks..."
+	  ${builtins.concatStringsSep "\n" (map mkSymlinkCmd symlinks)}
+	  echo "Dotfiles setup complete!"
+	'';
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -90,64 +122,8 @@
       environment.shells = [ pkgs.fish ];
       
       # Set fish as the default user shell
-      users.users."richardoliverbray".shell = pkgs.fish;
+      users.users.robray.shell = pkgs.fish;
       
-      # Manage shell profile to prevent permission issues
-      environment.shellInit = ''
-        # Source Nix-managed environment
-        if test -f /etc/static/bash/bashrc
-          source /etc/static/bash/bashrc
-        end
-        
-        # Set up environment variables
-        set -gx PATH /run/current-system/sw/bin $PATH
-        set -gx EDITOR nvim
-        set -gx VISUAL nvim
-      '';
-      
-      # Configure fish shell
-      programs.fish.shellInit = ''
-        # Fish-specific initialization
-        set -gx fish_greeting ""
-        set -gx fish_key_bindings fish_vi_key_bindings
-        
-        # Add Nix-managed packages to PATH
-        fish_add_path /run/current-system/sw/bin
-      '';
-      
-      # Symlink dotfiles
-      system.activationScripts.symlinkDotfiles = ''
-        # Create directories if they don't exist
-        mkdir -p /Users/richardoliverbray/.config
-        mkdir -p /Users/richardoliverbray/Library/LaunchAgents
-        
-        # Symlink sketchybar configuration
-        ln -sf /Users/richardoliverbray/dotfiles/.config/sketchybar /Users/richardoliverbray/.config/sketchybar
-        chmod +x /Users/richardoliverbray/.config/sketchybar/sketchybarrc
-        
-        # Symlink fish configuration
-        ln -sf /Users/richardoliverbray/dotfiles/.config/fish /Users/richardoliverbray/.config/fish
-        
-        # Symlink launch agent
-        ln -sf /Users/richardoliverbray/dotfiles/Library/LaunchAgents/com.user.sketchybar.plist /Users/richardoliverbray/Library/LaunchAgents/com.user.sketchybar.plist
-      '';
-      
-      # Ensure fish shell is properly configured
-      system.activationScripts.profile.text = ''
-        # Remove problematic .profile symlink if it exists
-        if [ -L /Users/richardoliverbray/.profile ]; then
-          echo "Removing existing .profile symlink..."
-          rm -f /Users/richardoliverbray/.profile
-        fi
-        
-        # Trigger shell change if it doesn't match the Nix path
-        if [ "$(dscl . -read /Users/richardoliverbray UserShell | awk '{print \$2}')" != "/run/current-system/sw/bin/fish" ]; then
-          echo "Setting default shell to Nix fish..."
-          # Use -create to overwrite the value regardless of previous state
-          dscl . -create /Users/richardoliverbray UserShell /run/current-system/sw/bin/fish
-        fi
-      '';
-
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -170,7 +146,7 @@
           nix-homebrew = {
             enable = true;
             enableRosetta = true;
-            user = "richardoliverbray";
+            user = "robray";
             autoMigrate = true;
           };
         }

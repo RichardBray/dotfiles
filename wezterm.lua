@@ -7,6 +7,9 @@ config.line_height = 1.1
 config.font = wezterm.font "BlexMono Nerd Font Mono"
 config.color_scheme = 'tokyonight_night'
 config.window_close_confirmation = 'NeverPrompt' -- For quitting WezTerm
+config.default_prog = { '/run/current-system/sw/bin/fish', '-l' }
+config.default_prog = { '/opt/homebrew/bin/fish', '-l' }
+config.default_prog = { '/opt/homebrew/bin/fish', '-l' }
 
 -- Performance Hack
 config.max_fps = 120
