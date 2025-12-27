@@ -1,0 +1,27 @@
+(defcfg
+  process-unmapped-keys yes
+  macos-dev-names-exclude (
+    "MX Master"
+  )
+)
+
+(defvar
+  tap-timeout 200
+  hold-timeout 200
+)
+
+(defsrc
+  caps a s d f j k l ;
+)
+
+(deflayer base
+  esc
+  (tap-hold $tap-timeout $hold-timeout a lsft)
+  (tap-hold $tap-timeout $hold-timeout s lctl)
+  (tap-hold $tap-timeout $hold-timeout d lalt)
+  (tap-hold $tap-timeout $hold-timeout f lmet)
+  (tap-hold $tap-timeout $hold-timeout j rmet)
+  (tap-hold $tap-timeout $hold-timeout k ralt)
+  (tap-hold $tap-timeout $hold-timeout l rctl)
+  (tap-hold $tap-timeout $hold-timeout ; rsft)
+)

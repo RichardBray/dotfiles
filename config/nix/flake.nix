@@ -29,24 +29,23 @@
           pkgs.opencode
           pkgs.ffmpeg_7
           pkgs.kanata
-          pkgs.sketchybar
           pkgs.fish
           pkgs.eza
           pkgs.mise
-          pkgs.claude-code
           pkgs.portaudio
           pkgs.atuin
           pkgs.helix
-          pkgs.atuin
         ];
 
       homebrew = {
         enable = true;
         taps = [
           "nikitabobko/tap"
+          "FelixKratz/formulae"
         ];
         brews = [
           "displayplacer"
+          "sketchybar"
           "starship"
         ];
         casks = [
@@ -80,37 +79,15 @@
         dock.tilesize = 45;
         dock.magnification = false;
         dock.persistent-apps = [];
+        NSGlobalDomain._HIHideMenuBar = false;
       };
-
-      system.activationScripts.touchbar.text = ''
-        defaults write com.apple.touchbar.agent PresentationModeGlobal "fullControlStrip"
-        killall ControlCenter 2>/dev/null || true
-      '';
 
       system.primaryUser = "robray";
 
       system.activationScripts.dotfiles.text = let
-	homeDir = "/Users/robray";
-	dotfilesDir = "${homeDir}/dotfiles/config";
-	  symlinks = [
-	    ["${dotfilesDir}/wezterm.lua" "${homeDir}/.config/wezterm/wezterm.lua"]
-	    ["${dotfilesDir}/nvim" "${homeDir}/.config/nvim"]
-	    ["${dotfilesDir}/fish" "${homeDir}/.config/fish"]
-	  ];
-	  mkSymlinkCmd = link: let
-	    source = builtins.elemAt link 0;
-	    target = builtins.elemAt link 1;
-	  in ''
-	    echo "Creating symlink: ${source} -> ${target}"
-	    mkdir -p "$(dirname "${target}")"
-	    ln -sfn "${source}" "${target}"
-	  '';
-	  
-	in ''
-	  echo "Setting up dotfiles symlinks..."
-	  ${builtins.concatStringsSep "\n" (map mkSymlinkCmd symlinks)}
-	  echo "Dotfiles setup complete!"
-	'';
+    	homeDir = "/Users/robray";
+    	dotfilesDir = "${homeDir}/dotfiles/config";
+      in "";
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
