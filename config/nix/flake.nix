@@ -18,23 +18,23 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
-        [ 
-          pkgs.neovim
-          pkgs.fzf
-          pkgs.ripgrep
-          pkgs.jq
-          pkgs.lazygit
-          pkgs.zoxide
-          pkgs.superfile
-          pkgs.opencode
-          pkgs.ffmpeg_7
-          pkgs.kanata
-          pkgs.fish
-          pkgs.eza
-          pkgs.mise
-          pkgs.portaudio
+        [
           pkgs.atuin
+          pkgs.eza
+          pkgs.ffmpeg_7
+          pkgs.fish
+          pkgs.fzf
           pkgs.helix
+          pkgs.jq
+          pkgs.kanata
+          pkgs.lazygit
+          pkgs.mise
+          pkgs.neovim
+          pkgs.opencode
+          pkgs.portaudio
+          pkgs.ripgrep
+          pkgs.superfile
+          pkgs.zoxide
         ];
 
       homebrew = {
