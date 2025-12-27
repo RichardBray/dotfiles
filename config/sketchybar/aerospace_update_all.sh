@@ -4,19 +4,21 @@
 # This script is called by aerospace's exec-on-workspace-change
 
 # Use full path to sketchybar
-SKETCHYBAR_CMD="/run/current-system/sw/bin/sketchybar"
+SKETCHYBAR_CMD="sketchybar"
 
 # Source colors
-CONFIG_DIR="$(dirname "$0")/.."
-source "$CONFIG_DIR/colors.sh"
+CONFIG_DIR="$(dirname "$0")"
+source "$CONFIG_DIR/../colors.sh"
 
 # Get the current focused workspace
 CURRENT_WORKSPACE="$1"
 
 # If no argument provided, get it from aerospace
 if [ -z "$CURRENT_WORKSPACE" ]; then
-    CURRENT_WORKSPACE=$(/opt/homebrew/bin/aerospace list-workspaces --focused)
+    CURRENT_WORKSPACE=$(aerospace list-workspaces --focused)
 fi
+
+
 
 # Update all workspace indicators
 for workspace in 7 1 2 3 4 5 6; do

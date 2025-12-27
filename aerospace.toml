@@ -13,11 +13,11 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-    'exec-and-forget /bin/bash -c "sleep 3 && CONFIG_DIR=/Users/richardoliverbray/.config/sketchybar /Users/richardoliverbray/.config/sketchybar/plugins/aerospace_update_all.sh"'
+    'exec-and-forget /bin/bash -c "sleep 3 && /Users/robray/.config/sketchybar/plugins/aerospace_update_all.sh"'
 ]
 
 exec-on-workspace-change = ['/bin/bash', '-c',
-    'CONFIG_DIR=/Users/richardoliverbray/.config/sketchybar /Users/richardoliverbray/.config/sketchybar/plugins/aerospace_update_all.sh $AEROSPACE_FOCUSED_WORKSPACE'
+    '/Users/robray/.config/sketchybar/plugins/aerospace_update_all.sh $AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
 # Start AeroSpace at login
