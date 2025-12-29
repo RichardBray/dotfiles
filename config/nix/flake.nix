@@ -56,6 +56,7 @@
           "elgato-camera-hub"
           "elgato-control-center"
           "font-blex-mono-nerd-font"
+          "logi-options+"
           "karabiner-elements"
           "macwhisper"
           "raycast"

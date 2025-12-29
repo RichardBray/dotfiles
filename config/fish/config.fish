@@ -17,6 +17,7 @@ set -g fish_greeting ""
 starship init fish | source
 eval "$(/opt/homebrew/bin/brew shellenv)"
 zoxide init fish | source
+mise activate fish | source
 
 # Add Bun global bin directory to PATH for Gemini CLI
 fish_add_path "/Users/richardoliverbray/.bun/bin"
@@ -40,7 +41,6 @@ alias ls='eza --icons=always'
 alias lstr='eza -ls=time --icons=always --no-permissions --no-filesize --no-user'
 alias tree='eza -l --tree --no-user --no-permissions --no-filesize --icons=always'
 alias \ls='ls'
-
 
 # Git abbreviations
 abbr gst 'git status'
@@ -70,13 +70,11 @@ abbr cuca 'uv run --with "numpy,pyaudio" ~/content-tools/scripts/virtual_mic_del
 abbr transcribe '~/whisper_app/index.js ~/Downloads/"$input_name"_ff.mp4'
 
 # Kanata control aliases
-abbr kdurgod 'sudo kanata --cfg ~/.config/kanata/durgod.kbd --port 7070' 
-abbr kdefault 'sudo kanata --cfg ~/.config/kanata/default.kbd --port 7070' 
+abbr kdurgod 'sudo kanata --cfg ~/.config/kanata/durgod.kbd --port 7070'
+abbr kdefault 'sudo kanata --cfg ~/.config/kanata/default.kbd --port 7070'
 
 # Nix aliases
 abbr darwin-rebuild 'sudo darwin-rebuild switch --flake ~/dotfiles/config/nix#my-mac'
-
-
 
 set -gx PATH /nix/var/nix/profiles/system/sw/bin $PATH
 set -gx PATH /run/current-system/sw/bin $PATH
