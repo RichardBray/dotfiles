@@ -13,7 +13,7 @@
 (defsrc
   caps a s d f j k l ;
   q w e u
-  ins home pgup pgdn del end
+  ins home pgup del end pgdn 
   lalt lmet
   ` nonusbslash
   lctl
@@ -36,9 +36,9 @@
   (multi ralt rctl 1)
   (multi ralt rctl 2)
   (multi ralt rctl 3)
+  (multi ralt rctl 4)
   (multi ralt rctl 5)
   (multi ralt rctl 6)
-  (multi ralt rctl 4)
   lmet
   lalt
   nonusbslash
@@ -63,9 +63,9 @@
   (multi ralt rctl 1)
   (multi ralt rctl 2)
   (multi ralt rctl 3)
+  (multi ralt rctl 4)
   (multi ralt rctl 5)
   (multi ralt rctl 6)
-  (multi ralt rctl 4)
   lmet
   lalt
   nonusbslash
