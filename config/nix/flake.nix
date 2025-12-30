@@ -31,7 +31,6 @@
           pkgs.mise
           pkgs.neovim
           pkgs.opencode
-          pkgs.portaudio
           pkgs.ripgrep
           pkgs.superfile
           pkgs.zoxide
@@ -45,6 +44,8 @@
         ];
         brews = [
           "displayplacer"
+          "ltex-ls"
+          "portaudio"
           "sketchybar"
           "starship"
         ];
@@ -53,7 +54,6 @@
           "affinity"
           "arc"
           "camtasia"
-          "elgato-camera-hub"
           "elgato-control-center"
           "font-blex-mono-nerd-font"
           "logi-options+"
