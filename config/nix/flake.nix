@@ -32,7 +32,6 @@
           pkgs.neovim
           pkgs.opencode
           pkgs.ripgrep
-          pkgs.superfile
           pkgs.zoxide
         ];
 
@@ -44,10 +43,12 @@
         ];
         brews = [
           "displayplacer"
-          "ltex-ls"
+          "mole"
           "portaudio"
           "sketchybar"
           "starship"
+          "superfile"
+          "typos-ls"
         ];
         casks = [
           "aerospace"
@@ -58,7 +59,6 @@
           "font-blex-mono-nerd-font"
           "logi-options+"
           "karabiner-elements"
-          "macwhisper"
           "raycast"
           "shortcat"
           "slack"
@@ -68,6 +68,7 @@
         ];
         masApps = {
           "Keystroke Pro" = 1572206224;
+          "Davinci Resolve" = 571213070;
         };
 
         onActivation.cleanup = "zap";
