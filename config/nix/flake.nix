@@ -30,7 +30,6 @@
           pkgs.lazygit
           pkgs.mise
           pkgs.neovim
-          pkgs.opencode
           pkgs.ripgrep
           pkgs.zoxide
         ];
