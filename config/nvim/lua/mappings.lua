@@ -37,7 +37,6 @@ map("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 
 map("n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostic message" })
-map("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss noice message" })
 
 -- Remap delete operations to use blackhole register
 map("n", "d", '"_d', { desc = "Delete to blackhole register" })
