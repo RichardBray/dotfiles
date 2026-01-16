@@ -3,7 +3,6 @@ idiomatic_version_file_enable_tools = ["python"]
 experimental = true
 
 [tools]
-claude-code = "latest"
 doctl = "latest"
 "go:github.com/schollz/croc/v10" = "latest"
 hcloud = "latest"
@@ -11,6 +10,5 @@ helm = "latest"
 k9s = "latest"
 kubectx = "latest"
 "npm:@beads/bd" = "latest"
-"npm:@google/gemini-cli" = "latest"
 ruby = "latest"
 

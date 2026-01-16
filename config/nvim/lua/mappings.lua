@@ -36,7 +36,11 @@ map("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 map("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 
-map("n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostic message" })
+-- Helix-style keymaps
+map("n", "x", "V", { desc = "Visual line mode" })
+map("n", "gl", "$", { desc = "Go to end of line" })
+map("n", "gs", "^", { desc = "Go to start of line" })
+map("n", "ge", "G", { desc = "Go to end of file" })
 
 -- Remap delete operations to use blackhole register
 map("n", "d", '"_d', { desc = "Delete to blackhole register" })
