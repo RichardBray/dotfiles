@@ -1,5 +1,0 @@
-# This file contains fish universal variable definitions.
-# VERSION: 3.0
-SETUVAR __fish_initialized:4300
-SETUVAR _fisher_upgraded_to_4_4:\x1d
-SETUVAR fish_user_paths:/Users/robray/\x2eopencode/bin\x1e/run/current\x2dsystem/sw/bin\x1e/Users/richardoliverbray/\x2ebun/bin\x1e/Applications/WezTerm\x2eapp/Contents/MacOS

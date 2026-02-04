@@ -1,5 +1,6 @@
 .secrets.fish
 .DS_Store
+.backup/
 
 # Claude directory ignores
 .claude/
