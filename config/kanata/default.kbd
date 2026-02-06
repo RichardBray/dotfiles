@@ -12,6 +12,8 @@
 
 (defsrc
   caps a s d f j k l ;
+  q w e u
+  lctl
 )
 
 (deflayer base
@@ -24,4 +26,26 @@
   (tap-hold $tap-timeout $hold-timeout k ralt)
   (tap-hold $tap-timeout $hold-timeout l rctl)
   (tap-hold $tap-timeout $hold-timeout ; rsft)
+  q
+  w
+  e
+  u
+  (layer-switch editor)
+)
+
+(deflayer editor
+  esc
+  (tap-hold $tap-timeout $hold-timeout a lsft)
+  (tap-hold $tap-timeout $hold-timeout s lctl)
+  (tap-hold $tap-timeout $hold-timeout d lalt)
+  (tap-hold $tap-timeout $hold-timeout f lmet)
+  (tap-hold $tap-timeout $hold-timeout j rmet)
+  (tap-hold $tap-timeout $hold-timeout k ralt)
+  (tap-hold $tap-timeout $hold-timeout l rctl)
+  (tap-hold $tap-timeout $hold-timeout ; rsft)
+  (multi lmet z)
+  del
+  l
+  (multi lmet z)
+  (layer-switch base)
 )

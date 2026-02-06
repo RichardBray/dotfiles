@@ -25,14 +25,14 @@ vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
 
 vim.lsp.config("ruff", {
   capabilities = capabilities,
-  init_options = {
-    settings = {
-    }
-  }
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
 })
 
 vim.lsp.config("gopls", {
   capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
   settings = {
     gopls = {
       analyses = {
@@ -46,25 +46,28 @@ vim.lsp.config("gopls", {
 
 vim.lsp.config("ts_ls", {
   capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
 
 vim.lsp.config("svelte", {
   capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   filetypes = { "svelte" },
 })
 
-local servers = { "html", "cssls", "ts_ls", "svelte" }
+local servers = { "html", "cssls" }
 
 for _, lsp in ipairs(servers) do
   vim.lsp.config(lsp, {
     capabilities = capabilities,
+    on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
   })
-  vim.lsp.enable(lsp)
 end
 
-vim.lsp.enable("gopls")
-vim.lsp.enable("ruff")
+for _, lsp in ipairs({ "html", "cssls", "ts_ls", "svelte", "gopls", "ruff" }) do
+  vim.lsp.enable(lsp)
+end
