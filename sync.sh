@@ -10,6 +10,7 @@ IGNORE_DIRS=(node_modules .git __pycache__ target dist build .venv venv .backup)
 
 ROOT_FILES=(.zshrc .gitconfig .aerospace.toml .wezterm.lua)
 CONFIG_DIRS=(fish nvim sketchybar mise nix helix kanata opencode)
+HOME_DIRS=(.claude)
 
 # ===== OPTIONS =====
 DRY_RUN=false
@@ -304,6 +305,44 @@ sync_config_files() {
     echo "Config files: $synced synced, $skipped skipped"
 }
 
+sync_home_dirs() {
+    log "Syncing home dot-directories..."
+
+    local synced=0
+    local skipped=0
+
+    for dir in "${HOME_DIRS[@]}"; do
+        local home_dir="$HOME/$dir"
+
+        if [[ ! -d "$home_dir" ]]; then
+            verbose "Home directory does not exist: $home_dir"
+            continue
+        fi
+
+        verbose "Processing directory: $dir"
+        local count=0
+        for file in $(find "$home_dir" -type f 2>/dev/null); do
+            verbose "Processing file: $file"
+            count=$((count + 1))
+            local rel_path="${file#$HOME/}"
+            local home_file="$HOME/$rel_path"
+            local dotfile="$DOTFILES_DIR/$rel_path"
+
+            sync_file "$home_file" "$dotfile"
+            local result=$?
+
+            if [[ $result -eq 0 ]]; then
+                synced=$((synced + 1))
+            else
+                skipped=$((skipped + 1))
+            fi
+        done
+        verbose "Completed directory: $dir ($count files)"
+    done
+
+    echo "Home dirs: $synced synced, $skipped skipped"
+}
+
 sync_all() {
     local total_synced=0
     local total_skipped=0
@@ -316,8 +355,10 @@ sync_all() {
     fi
     
     sync_root_files
-    
+
     sync_config_files
+
+    sync_home_dirs
     
     local end_time
     end_time=$(date +%s)
