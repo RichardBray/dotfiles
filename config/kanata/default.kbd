@@ -14,6 +14,10 @@
   caps a s d f j k l ;
 )
 
+(defchordsv2
+  (j k) del 200 first-release ()
+)
+
 (deflayer base
   esc
   (tap-hold $tap-timeout $hold-timeout a lsft)
