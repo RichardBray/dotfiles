@@ -12,7 +12,7 @@
 )
 
 (defsrc
-  caps a s d f j k l ;
+  caps a s d f g h j k l ; spc
 )
 
 (defchordsv2
@@ -25,8 +25,16 @@
   (tap-hold $tap-timeout $hold-timeout s lctl)
   (tap-hold $tap-timeout $hold-timeout d lalt)
   (tap-hold $tap-timeout $hold-timeout f lmet)
+  g h
   (tap-hold $tap-timeout $hold-timeout j rmet)
   (tap-hold $tap-timeout $hold-timeout k ralt)
   (tap-hold $tap-timeout $hold-timeout l rctl)
   (tap-hold $tap-timeout $hold-timeout ; rsft)
+  (tap-hold 200 200 spc (layer-while-held numbers))
+)
+
+(deflayer numbers
+  esc
+  1 2 3 4 5 6 7 8 9 0
+  spc
 )

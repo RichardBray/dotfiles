@@ -12,7 +12,7 @@
 )
 
 (defsrc
-  caps a s d f j k l ;
+  caps a s d f g h j k l ; spc
   q w e u
   ins home pgup del end pgdn 
   lalt lmet
@@ -30,10 +30,12 @@
   (tap-hold $tap-timeout $hold-timeout s lctl)
   (tap-hold $tap-timeout $hold-timeout d lalt)
   (tap-hold $tap-timeout $hold-timeout f lmet)
+  g h
   (tap-hold $tap-timeout $hold-timeout j rmet)
   (tap-hold $tap-timeout $hold-timeout k ralt)
   (tap-hold $tap-timeout $hold-timeout l rctl)
   (tap-hold $tap-timeout $hold-timeout ; rsft)
+  (tap-hold 200 200 spc (layer-while-held numbers))
   q
   w
   e
@@ -57,10 +59,12 @@
   (tap-hold $tap-timeout $hold-timeout s lctl)
   (tap-hold $tap-timeout $hold-timeout d lalt)
   (tap-hold $tap-timeout $hold-timeout f lmet)
+  g h
   (tap-hold $tap-timeout $hold-timeout j rmet)
   (tap-hold $tap-timeout $hold-timeout k ralt)
   (tap-hold $tap-timeout $hold-timeout l rctl)
   (tap-hold $tap-timeout $hold-timeout ; rsft)
+  (tap-hold 200 200 spc (layer-while-held numbers))
   (multi lmet z)
   del
   l
@@ -76,4 +80,15 @@
   nonusbslash
   `
   (layer-switch base)
+)
+
+(deflayer numbers
+  esc
+  1 2 3 4 5 6 7 8 9 0
+  spc
+  _ _ _ _
+  _ _ _ _ _ _
+  _ _
+  _ _
+  _
 )
