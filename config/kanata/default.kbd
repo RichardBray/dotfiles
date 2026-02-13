@@ -16,7 +16,7 @@
 )
 
 (defchordsv2
-  (j k) del 200 first-release ()
+  (j k) bspc 200 first-release ()
 )
 
 (deflayer base
