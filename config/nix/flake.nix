@@ -41,13 +41,18 @@
           "FelixKratz/formulae"
         ];
         brews = [
+          "colima"
           "displayplacer"
+          "docker"
+          "docker-buildx"
+          "docker-compose"
+          "gh"
           "mole"
           "portaudio"
           "sketchybar"
           "starship"
           "superfile"
-          "typos-ls"
+          "tree-sitter-cli"
         ];
         casks = [
           "aerospace"
@@ -115,7 +120,6 @@
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."my-mac" = nix-darwin.lib.darwinSystem {
       modules = [ 
         configuration

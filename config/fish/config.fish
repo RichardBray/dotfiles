@@ -20,6 +20,7 @@ zoxide init fish | source
 mise activate fish | source
 
 fish_add_path ~/.opencode/bin
+fish_add_path ~/.bun/bin
 # Add WezTerm to PATH
 fish_add_path -a "/Applications/WezTerm.app/Contents/MacOS"
 
@@ -28,8 +29,10 @@ alias vim='nvim'
 alias vi='nvim'
 alias \vi='vi'
 alias gpsup='git push --set-upstream origin main'
-alias cld='claude --dangerously-skip-permissions'
-alias op='opencode'
+alias ccd='CLUADE_QUITE=1 claude --dangerously-skip-permissions'
+alias cc='claude'
+alias ccq='CLAUDE_QUIET=1 claude'
+alias oc='opencode'
 alias lg='lazygit'
 alias spf='superfile'
 alias cd='z'

@@ -25,7 +25,7 @@
 )
 
 (deflayer base
-  esc
+  (tap-hold $tap-timeout $hold-timeout esc (layer-while-held numbers))
   (tap-hold $tap-timeout $hold-timeout a lsft)
   (tap-hold $tap-timeout $hold-timeout s lctl)
   (tap-hold $tap-timeout $hold-timeout d lalt)
@@ -35,7 +35,7 @@
   (tap-hold $tap-timeout $hold-timeout k ralt)
   (tap-hold $tap-timeout $hold-timeout l rctl)
   (tap-hold $tap-timeout $hold-timeout ; rsft)
-  (tap-hold 200 200 spc (layer-while-held numbers))
+  spc
   q
   w
   e
@@ -54,7 +54,7 @@
 )
 
 (deflayer editor
-  esc
+  (tap-hold $tap-timeout $hold-timeout esc (layer-while-held numbers))
   (tap-hold $tap-timeout $hold-timeout a lsft)
   (tap-hold $tap-timeout $hold-timeout s lctl)
   (tap-hold $tap-timeout $hold-timeout d lalt)
@@ -64,7 +64,7 @@
   (tap-hold $tap-timeout $hold-timeout k ralt)
   (tap-hold $tap-timeout $hold-timeout l rctl)
   (tap-hold $tap-timeout $hold-timeout ; rsft)
-  (tap-hold 200 200 spc (layer-while-held numbers))
+  spc
   (multi lmet z)
   del
   l
@@ -83,7 +83,7 @@
 )
 
 (deflayer numbers
-  esc
+  _
   1 2 3 4 5 6 7 8 9 0
   spc
   _ _ _ _
