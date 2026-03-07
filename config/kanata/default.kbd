@@ -13,6 +13,8 @@
 
 (defsrc
   caps a s d f g h j k l ; spc
+  q w e u
+  lctl
 )
 
 (defchordsv2
@@ -31,10 +33,33 @@
   (tap-hold $tap-timeout $hold-timeout l rctl)
   (tap-hold $tap-timeout $hold-timeout ; rsft)
   spc
+  q w e u
+  (layer-switch editor)
+)
+
+(deflayer editor
+  (tap-hold $tap-timeout $hold-timeout esc (layer-while-held numbers))
+  (tap-hold $tap-timeout $hold-timeout a lsft)
+  (tap-hold $tap-timeout $hold-timeout s lctl)
+  (tap-hold $tap-timeout $hold-timeout d lalt)
+  (tap-hold $tap-timeout $hold-timeout f lmet)
+  g h
+  (tap-hold $tap-timeout $hold-timeout j rmet)
+  (tap-hold $tap-timeout $hold-timeout k ralt)
+  (tap-hold $tap-timeout $hold-timeout l rctl)
+  (tap-hold $tap-timeout $hold-timeout ; rsft)
+  spc
+  (multi lmet z)
+  del
+  l
+  (multi lmet z)
+  (layer-switch base)
 )
 
 (deflayer numbers
   _
   1 2 3 4 5 6 7 8 9 0
   spc
+  _ _ _ _
+  _
 )
