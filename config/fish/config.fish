@@ -84,3 +84,6 @@ set -gx NIX_PATH darwin=$HOME/.config/nix:$NIX_PATH
 set -x EZA_CONFIG_DIR /Users/richardoliverbray/.config/eza
 functions -e spf
 set -gx PATH $HOME/.local/bin $PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/robray/google-cloud-sdk/path.fish.inc' ]; . '/Users/robray/google-cloud-sdk/path.fish.inc'; end

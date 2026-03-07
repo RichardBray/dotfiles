@@ -32,6 +32,9 @@ config.window_padding = {
   bottom = 0
 }
 
+-- Enable Kitty keyboard protocol (allows apps to distinguish Shift+Enter, etc.)
+config.enable_kitty_keyboard = true
+
 -- Key bindings
 config.keys = {
   {
