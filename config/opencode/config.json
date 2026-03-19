@@ -21,7 +21,7 @@
     "o-ollama": {
       "npm": "@ai-sdk/openai-compatible",
       "options": {
-        "baseURL": "http://178.128.226.213:11434/v1"
+        "baseURL": "http://localhost:11434/v1"
       },
       "models": {
         "deepseek-coder-v2:16b": {
@@ -40,6 +40,13 @@
         },
         "gemma3n:e4b": {
           "name": "gemma2-9b-it",
+          "limit": {
+            "context": 200000,
+            "output": 32000
+          }
+        },
+        "qwen3.5": {
+          "name": "qwen3.5",
           "limit": {
             "context": 200000,
             "output": 32000
