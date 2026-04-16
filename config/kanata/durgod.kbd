@@ -25,7 +25,7 @@
 )
 
 (deflayer base
-  (tap-hold $tap-timeout $hold-timeout esc (layer-while-held numbers))
+  esc
   (tap-hold $tap-timeout $hold-timeout a lsft)
   (tap-hold $tap-timeout $hold-timeout s lctl)
   (tap-hold $tap-timeout $hold-timeout d lalt)
@@ -54,7 +54,7 @@
 )
 
 (deflayer editor
-  (tap-hold $tap-timeout $hold-timeout esc (layer-while-held numbers))
+  esc
   (tap-hold $tap-timeout $hold-timeout a lsft)
   (tap-hold $tap-timeout $hold-timeout s lctl)
   (tap-hold $tap-timeout $hold-timeout d lalt)

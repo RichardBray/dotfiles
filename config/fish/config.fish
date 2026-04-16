@@ -21,6 +21,7 @@ mise activate fish | source
 
 fish_add_path ~/.opencode/bin
 fish_add_path ~/.bun/bin
+fish_add_path ~/.hance/bin
 # Add WezTerm to PATH
 fish_add_path -a "/Applications/WezTerm.app/Contents/MacOS"
 
