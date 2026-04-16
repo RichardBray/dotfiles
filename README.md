@@ -1,4 +1,4 @@
-# Dotfiles
+# Dotfiles v2
 
 My personal configuration files and settings.
 
