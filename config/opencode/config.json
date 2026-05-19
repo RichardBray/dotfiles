@@ -4,11 +4,23 @@
     "chrome-devtools": {
       "type": "local",
       "command": [
-        "npx", 
-        "-y", 
-        "chrome-devtools-mcp@latest", 
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
         "--autoConnect"
       ]
+    },
+    "claude-context": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@zilliz/claude-context-mcp@latest"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "MILVUS_TOKEN": "${MILVUS_TOKEN}"
+      }
     }
   },
   "theme": "tokyonight",

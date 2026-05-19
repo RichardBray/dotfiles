@@ -3,7 +3,7 @@ local config = wezterm.config_builder()
 
 -- General
 config.default_prog = { '/run/current-system/sw/bin/fish', '-l' }
-config.font_size = 19
+config.font_size = 16
 config.line_height = 1.1
 config.font = wezterm.font "BlexMono Nerd Font Mono"
 config.color_scheme = 'tokyonight_night'

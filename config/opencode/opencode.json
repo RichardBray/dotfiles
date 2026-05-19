@@ -1,4 +1,27 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "mcp": {}
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--autoConnect"
+      ]
+    },
+    "claude-context": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@zilliz/claude-context-mcp@latest"
+      ],
+      "environment": {
+        "OPENAI_API_KEY": "{env:OPENAI_API_KEY}",
+        "MILVUS_TOKEN": "{env:MILVUS_TOKEN}",
+        "MILVUS_ADDRESS": "https://in05-f72a3b0ad2f9815.serverless.aws-eu-central-1.cloud.zilliz.com"
+      }
+    }
+  }
 }
