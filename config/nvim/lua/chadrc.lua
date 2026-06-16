@@ -5,8 +5,11 @@
 ---@type ChadrcConfig
 local M = {}
 
+-- Filming mode: launch nvim with FIRECRAWL_FILMING=1 to use the Firecrawl theme
+local filming = vim.env.FIRECRAWL_FILMING == "1"
+
 M.base46 = {
-	theme = "tokyonight",
+	theme = filming and "firecrawl" or "tokyonight",
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },

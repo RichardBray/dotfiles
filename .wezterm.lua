@@ -1,23 +1,50 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
+-- Filming mode: launch with `FIRECRAWL_FILMING=1 wezterm` to flip to Firecrawl Dark
+local filming = os.getenv 'FIRECRAWL_FILMING' == '1'
+
+config.color_schemes = {
+  ['Firecrawl Dark'] = {
+    foreground = '#d4d4d4',
+    background = '#1e1e1e',
+    cursor_bg = '#E97318',
+    cursor_fg = '#1e1e1e',
+    cursor_border = '#E97318',
+    selection_bg = '#5a3a1a',
+    selection_fg = '#d4d4d4',
+    scrollbar_thumb = '#444444',
+    split = '#444444',
+    ansi = {
+      '#1e1e1e', '#f44747', '#a0a0a0', '#E97318',
+      '#E97318', '#ce9178', '#DCDCAA', '#d4d4d4',
+    },
+    brights = {
+      '#858585', '#f44747', '#a0a0a0', '#FF9D4D',
+      '#FF9D4D', '#fdba74', '#DCDCAA', '#ffffff',
+    },
+  },
+}
+
 -- General
 config.default_prog = { '/run/current-system/sw/bin/fish', '-l' }
 config.font_size = 16
 config.line_height = 1.1
 config.font = wezterm.font "BlexMono Nerd Font Mono"
-config.color_scheme = 'tokyonight_night'
+config.color_scheme = filming and 'Firecrawl Dark' or 'tokyonight_night'
 config.window_close_confirmation = 'NeverPrompt' -- For quitting WezTerm
 
 -- Performance Hack
 config.max_fps = 120
 config.animation_fps = 120
 
--- Cursor
-config.colors = {
-  cursor_bg = '#7aa2f7',
-  cursor_border = '#7aa2f7',
-}
+-- Cursor (skip override in filming mode so Firecrawl's orange cursor shows)
+if not filming then
+  config.colors = {
+    cursor_bg = '#7aa2f7',
+    cursor_border = '#7aa2f7',
+  }
+end
 
 config.inactive_pane_hsb = {
   saturation = 0.5,

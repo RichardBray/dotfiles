@@ -37,7 +37,19 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
--- load theme
+-- load theme: rebuild the base46 cache when it's missing or the active theme
+-- changed (e.g. toggling FIRECRAWL_FILMING between launches)
+local theme = require("chadrc").base46.theme
+local marker = vim.g.base46_cache .. ".theme"
+local cached = vim.uv.fs_stat(marker) and (io.open(marker):read "*a") or nil
+if not vim.uv.fs_stat(vim.g.base46_cache .. "defaults") or cached ~= theme then
+  require("base46").load_all_highlights()
+  local f = io.open(marker, "w")
+  if f then
+    f:write(theme)
+    f:close()
+  end
+end
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
@@ -48,4 +60,7 @@ vim.schedule(function()
   require "mappings"
 end)
 
-vim.cmd[[colorscheme tokyonight-night]]
+-- In filming mode the Firecrawl base46 theme handles colors; otherwise use tokyonight
+if vim.env.FIRECRAWL_FILMING ~= "1" then
+  vim.cmd [[colorscheme tokyonight-night]]
+end
