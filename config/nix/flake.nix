@@ -41,17 +41,20 @@
           "FelixKratz/formulae"
         ];
         brews = [
+          "cloudflared"
           "colima"
           "displayplacer"
           "docker"
           "docker-buildx"
           "docker-compose"
           "gh"
+          "mas"
           "mole"
           "portaudio"
           "sketchybar"
           "starship"
           "superfile"
+          "tailscale"
           "tree-sitter-cli"
         ];
         casks = [
@@ -61,6 +64,7 @@
           "camtasia"
           "elgato-control-center"
           "font-blex-mono-nerd-font"
+          "google-chrome"
           "logi-options+"
           "karabiner-elements"
           "raycast"
@@ -73,6 +77,7 @@
         masApps = {
           "Keystroke Pro" = 1572206224;
           "Davinci Resolve" = 571213070;
+          "Tailscale" = 1475387142;
         };
 
         onActivation.cleanup = "zap";
