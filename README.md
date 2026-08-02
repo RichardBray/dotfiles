@@ -40,6 +40,12 @@ Already-symlinked files are skipped, so it's safe to re-run.
 
 ## New machine setup
 
+For a fresh Mac, follow [docs/new-mac-setup.md](docs/new-mac-setup.md) — it covers
+installing Nix, applying the nix-darwin flake (packages, casks, App Store apps),
+and the errors that come up along the way.
+
+To only link configs on a machine that is already set up:
+
 ```bash
 git clone https://github.com/richardbray/dotfiles.git ~/dotfiles
 
