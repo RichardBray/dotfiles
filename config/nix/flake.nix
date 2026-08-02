@@ -38,7 +38,7 @@
         enable = true;
         taps = [
           "nikitabobko/tap"
-          "FelixKratz/formulae"
+          "felixkratz/formulae"
         ];
         brews = [
           "cloudflared"
@@ -51,14 +51,14 @@
           "mas"
           "mole"
           "portaudio"
-          "sketchybar"
+          "felixkratz/formulae/sketchybar"
           "starship"
           "superfile"
           "tailscale"
           "tree-sitter-cli"
         ];
         casks = [
-          "aerospace"
+          "nikitabobko/tap/aerospace"
           "affinity"
           "arc"
           "camtasia"
