@@ -4,6 +4,7 @@ experimental = true
 
 [tools]
 bun = "latest"
+codex = "0.144.4"
 doctl = "latest"
 go = "latest"
 "go:github.com/schollz/croc/v10" = "latest"
@@ -14,6 +15,7 @@ node = "latest"
 "npm:prettier" = "latest"
 "npm:typescript" = "latest"
 "npm:typescript-language-server" = "latest"
+pnpm = "10.6.1"
 uv = "latest"
 wrangler = "latest"
 zig = "latest"

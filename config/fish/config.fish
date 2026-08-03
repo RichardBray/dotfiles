@@ -31,8 +31,27 @@ alias vi='nvim'
 alias \vi='vi'
 alias gpsup='git push --set-upstream origin main'
 alias cc='claude'
-alias ccq='CLAUDE_QUIET=1 claude'
-alias ccx='ANTHROPIC_BASE_URL=http://orva-studio-1:8787 CLAUDE_CODE_NO_FLICKER=1 CLAUDE_QUIET=1 claude'
+alias ccq='CAVEMAN_DEFAULT_MODE=lite CLAUDE_CODE_NO_FLICKER=1 CLAUDE_QUIET=1 claude'
+
+alias ccx='ANTHROPIC_BASE_URL=http://localhost:8317 \
+  ANTHROPIC_AUTH_TOKEN=sk-grannyfoo \
+  ANTHROPIC_DEFAULT_OPUS_MODEL=gpt-5.6-terra \
+  ANTHROPIC_DEFAULT_SONNET_MODEL=gpt-5.6-terra \
+  ANTHROPIC_DEFAULT_HAIKU_MODEL=gpt-5.6-luna \
+  ANTHROPIC_DEFAULT_FABLE_MODEL=gpt-5.6-sol \
+  CLAUDE_CODE_SUBAGENT_MODEL=gpt-5.6-terra \
+  CLAUDE_QUIET=1 claude'
+
+# function ccx
+#     set -x ANTHROPIC_BASE_URL http://localhost:8317
+#     set -x ANTHROPIC_AUTH_TOKEN sk-grannyfoo
+#     set -x ANTHROPIC_DEFAULT_OPUS_MODEL gpt-5.6-sol
+#     set -x ANTHROPIC_DEFAULT_SONNET_MODEL gpt-5.6-sol
+#     set -x ANTHROPIC_DEFAULT_HAIKU_MODEL gpt-5.6-sol
+#     set -x CLAUDE_QUIET 1
+#     claude $argv
+# end
+
 alias fcc='CLAUDE_CONFIG_DIR=~/.claude-work CLAUDE_CODE_NO_FLICKER=1 CLAUDE_QUIET=1 claude'
 alias oc='opencode'
 alias lg='lazygit'

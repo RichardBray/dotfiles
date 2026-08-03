@@ -16,6 +16,7 @@ DRY_RUN=false
 VERBOSE=false
 FORCE=false
 SKIP_CONFIRM=false
+COMMIT=false
 
 # ===== UTILITY FUNCTIONS =====
 
@@ -60,6 +61,7 @@ OPTIONS:
     -d, --dry-run     Show what would be done without making changes
     -v, --verbose     Show detailed output for each operation
     -y, --yes         Skip confirmation prompts
+    -c, --commit      Git add+commit in the dotfiles repo after syncing
     -f, --force       Force overwrite even if dotfile is newer
     -b, --backup-dir  Custom backup directory (default: ~/dotfiles/.backup/)
     -h, --help        Show this help message
@@ -80,6 +82,10 @@ parse_args() {
                 ;;
             -v|--verbose)
                 VERBOSE=true
+                shift
+                ;;
+            -c|--commit)
+                COMMIT=true
                 shift
                 ;;
             -y|--yes)
@@ -329,6 +335,16 @@ sync_all() {
     
     if $DRY_RUN; then
         log "This was a dry-run. Run without --dry-run to apply changes."
+    fi
+
+    if $COMMIT && ! $DRY_RUN; then
+        git -C "$DOTFILES_DIR" add -A
+        if git -C "$DOTFILES_DIR" diff --cached --quiet; then
+            log "Nothing to commit."
+        else
+            git -C "$DOTFILES_DIR" commit -m "chore: sync dotfiles $(date +%Y-%m-%d)"
+            log "Committed. Push with: git -C $DOTFILES_DIR push"
+        fi
     fi
 }
 
