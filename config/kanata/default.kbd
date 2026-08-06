@@ -42,7 +42,7 @@
   (tap-hold $tap-timeout $hold-timeout a lsft)
   (tap-hold $tap-timeout $hold-timeout s lctl)
   (tap-hold $tap-timeout $hold-timeout d lalt)
-  (tap-hold $tap-timeout $hold-timeout f lmet)
+  (tap-hold $tap-timeout $hold-timeout (multi lmet t) lmet)
   g h
   (tap-hold $tap-timeout $hold-timeout j rmet)
   (tap-hold $tap-timeout $hold-timeout k ralt)
@@ -54,12 +54,4 @@
   l
   (multi lmet z)
   (layer-switch base)
-)
-
-(deflayer numbers
-  _
-  1 2 3 4 5 6 7 8 9 0
-  spc
-  _ _ _ _
-  _
 )
