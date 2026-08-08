@@ -14,6 +14,9 @@ set -x _ZO_DATA_DIR "$HOME/.local/share/zoxide"
 set -g fish_greeting ""
 
 # Initialize Starship prompt
+# ponytail: point at the repo copy directly instead of teaching sync.sh about
+# single files under ~/.config
+set -x STARSHIP_CONFIG "$HOME/dotfiles/config/starship.toml"
 starship init fish | source
 eval "$(/opt/homebrew/bin/brew shellenv)"
 zoxide init fish | source
