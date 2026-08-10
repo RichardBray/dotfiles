@@ -66,6 +66,11 @@
           "font-blex-mono-nerd-font"
           "google-chrome"
           "logi-options+"
+          # NOTE: this cask only manages the Karabiner-Elements app itself.
+          # The separate Karabiner-DriverKit-VirtualHIDDevice driver (used by
+          # kanata) has a v8.x regression on macOS Tahoe - run
+          # ./pin-karabiner-driver.sh after provisioning to pin it to a
+          # known-working version.
           "karabiner-elements"
           "raycast"
           "shortcat"
