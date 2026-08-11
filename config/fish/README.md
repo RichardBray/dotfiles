@@ -73,6 +73,7 @@ Personal Fish shell configuration with custom functions, completions, and plugin
 - `toggle_display` - Toggle external display settings
 - `toggle_sketchybar` - Toggle sketchybar visibility
 - `toggle_aerospace_padding` - Toggle aerospace window padding
+- `toggle_aerospace_right` - Toggle aerospace outer.right padding between 20 and 350
 
 ## 🔒 Security
 
