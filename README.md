@@ -62,5 +62,29 @@ for d in aerospace fish nvim helix kanata mise nix sketchybar opencode; do
 done
 ```
 
+### Calendar scripts (`agenda`, `cal-notify`)
+
+`agenda` prints upcoming macOS calendar events; `cal-notify` fires a
+notification 5 min and 1 min before each event, driven by a launchd agent.
+Both read the local calendar store via icalBuddy - no network, no API keys.
+
+```bash
+brew install ical-buddy
+
+mkdir -p ~/.local/bin ~/.local/share/cal ~/.local/state/cal
+ln -s ~/dotfiles/bin/agenda          ~/.local/bin/agenda
+ln -s ~/dotfiles/bin/cal-notify      ~/.local/bin/cal-notify
+ln -s ~/dotfiles/share/cal/events.sh ~/.local/share/cal/events.sh
+
+# Background notifications (optional)
+ln -s ~/dotfiles/Library/LaunchAgents/com.robray.cal-notify.plist \
+      ~/Library/LaunchAgents/com.robray.cal-notify.plist
+launchctl load ~/Library/LaunchAgents/com.robray.cal-notify.plist
+```
+
+Make sure `~/.local/bin` is on `PATH`. The first run prompts for calendar
+access; if notifications never appear, grant Script Editor access under
+System Settings > Notifications.
+
 Other setup scripts: `mise-setup.sh` (tool installs), `vps_setup.sh` (server
 provisioning).

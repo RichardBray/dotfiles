@@ -1,0 +1,68 @@
+#!/bin/sh
+#
+# Fires a macOS notification 5 minutes and 1 minute before each calendar
+# event. Run every 60s by the launchd agent com.robray.cal-notify.
+# Manual run: `cal-notify` (handy for testing).
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+CAL_LIB="$HOME/.local/share/cal/events.sh"
+[ -f "$CAL_LIB" ] || CAL_LIB="$(cd "$(dirname "$0")/../lib" 2>/dev/null && pwd)/events.sh"
+. "$CAL_LIB"
+
+STATE="$HOME/.local/state/cal"
+FIRED="$STATE/fired.txt"          # dedup: keys we've already notified
+LOG="$STATE/notify.log"
+mkdir -p "$STATE"; touch "$FIRED"
+
+T_FIRST=300    # 5 minutes, in seconds
+T_SECOND=60    # 1 minute
+
+now=$(date +%s)
+
+# Post a notification via osascript. terminal-notifier silently fails to
+# deliver on current macOS; osascript (credited to "Script Editor") works.
+# Values are passed as argv, never interpolated into the AppleScript, so an
+# event title with quotes can't break the script or inject code.
+notify() {  # $1=title  $2=label ("5 min"/"1 min")  $3=start HH:MM  $4=calendar
+  _msg=${4:-Coming up on your calendar.}
+  /usr/bin/osascript - "$1" "$2" "$3" "$_msg" >/dev/null 2>&1 <<'OSA'
+on run argv
+  set t to item 1 of argv
+  set lab to item 2 of argv
+  set st to item 3 of argv
+  set msg to item 4 of argv
+  display notification msg with title ("Reminder: " & t) subtitle ("in " & lab & " - starts " & st) sound name "Submarine"
+end run
+OSA
+  echo "$(date '+%F %T')  notified ($2): $1 @ $3" >> "$LOG"
+}
+
+# Read once; record a heartbeat so we can confirm the (TCC-gated) read works
+# even when launchd runs us in the background.
+events=$(cal_events 1)
+ev_count=$(printf '%s' "$events" | grep -c '|')
+echo "$(date '+%F %T')  ran ok; upcoming events visible: $ev_count" > "$STATE/last-run"
+
+printf '%s\n' "$events" | while IFS='|' read -r epoch date start title cal; do
+  [ -z "$epoch" ] && continue
+  su=$((epoch - now))                       # seconds until start
+  [ "$su" -le 0 ] && continue               # already started / past
+
+  k5="${epoch}_${T_FIRST}"
+  k1="${epoch}_${T_SECOND}"
+
+  if [ "$su" -gt "$T_SECOND" ] && [ "$su" -le "$T_FIRST" ] \
+     && ! grep -qxF "$k5" "$FIRED"; then
+    notify "$title" "5 min" "$start" "$cal"; echo "$k5" >> "$FIRED"
+  fi
+  if [ "$su" -gt 0 ] && [ "$su" -le "$T_SECOND" ] \
+     && ! grep -qxF "$k1" "$FIRED"; then
+    notify "$title" "1 min" "$start" "$cal"; echo "$k1" >> "$FIRED"
+  fi
+done
+
+# Prune fired keys for events whose start is well in the past.
+if [ -s "$FIRED" ]; then
+  awk -F_ -v cutoff=$((now - 3600)) '$1 + 0 > cutoff' "$FIRED" > "$FIRED.tmp" \
+    && mv "$FIRED.tmp" "$FIRED"
+fi
