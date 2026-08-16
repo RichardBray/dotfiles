@@ -26,6 +26,13 @@
           pkgs.fzf
           pkgs.helix
           pkgs.jq
+          # kanata is pinned here by flake.lock, but its Karabiner
+          # VirtualHIDDevice driver is installed out-of-band by
+          # ./karabiner-driver/install.sh. The two must move together:
+          # kanata >= 1.13.0 needs driver v8.x, below that needs v6.x.
+          # A mismatch shows up only as "connect_failed asio.system:61".
+          # After `nix flake update`, check kanata's version against
+          # KANATA_MAX_VERSION in that script.
           pkgs.kanata
           pkgs.lazygit
           pkgs.mise
@@ -66,7 +73,11 @@
           "font-blex-mono-nerd-font"
           "google-chrome"
           "logi-options+"
-          "karabiner-elements"
+          # karabiner-elements deliberately omitted: kanata only needs the
+          # DriverKit driver, installed pinned by ./karabiner-driver/install.sh.
+          # Do NOT add it back and do NOT `brew uninstall --cask` it -- the
+          # cask's uninstall stanza runs `delete: /Library/Application
+          # Support/org.pqrs`, which would take the driver with it.
           "raycast"
           "shortcat"
           "slack"
