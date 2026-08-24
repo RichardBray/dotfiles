@@ -22,7 +22,7 @@
 
 
 (deflayer base
-  esc
+  (tap-hold-press $tap-timeout $hold-timeout esc (multi lmet lalt lctl))
   (tap-hold $tap-timeout $hold-timeout a lsft)
   (tap-hold $tap-timeout $hold-timeout s lctl)
   (tap-hold $tap-timeout $hold-timeout d lalt)
@@ -51,7 +51,7 @@
 )
 
 (deflayer editor
-  esc
+  (tap-hold-press $tap-timeout $hold-timeout esc (multi lmet lalt lctl))
   (tap-hold $tap-timeout $hold-timeout a lsft)
   (tap-hold $tap-timeout $hold-timeout s lctl)
   (tap-hold $tap-timeout $hold-timeout d lalt)
