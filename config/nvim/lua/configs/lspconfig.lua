@@ -13,7 +13,7 @@ vim.diagnostic.config({
 })
 
 require("mason-lspconfig").setup({
-  ensure_installed = { "gopls", "ts_ls" },
+  ensure_installed = { "ts_ls" },
 })
 
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
@@ -29,19 +29,6 @@ vim.lsp.config("ruff", {
     settings = {
     }
   }
-})
-
-vim.lsp.config("gopls", {
-  capabilities = capabilities,
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-      gofumpt = true,
-    },
-  },
 })
 
 vim.lsp.config("ts_ls", {
@@ -66,5 +53,4 @@ for _, lsp in ipairs(servers) do
   vim.lsp.enable(lsp)
 end
 
-vim.lsp.enable("gopls")
 vim.lsp.enable("ruff")
