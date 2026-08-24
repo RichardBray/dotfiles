@@ -15,6 +15,7 @@
   caps a s d f g h j k l ; spc
   q w e u
   lctl
+  f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
 )
 
 (defchordsv2
@@ -35,6 +36,8 @@
   spc
   q w e u
   (layer-switch editor)
+  ;; standard macOS function row (f5 dictation has no HID code, left literal)
+  brdn bru mctl lpad f5 dnd prev pp next mute vold volu
 )
 
 (deflayer editor
@@ -54,4 +57,5 @@
   l
   (multi lmet z)
   (layer-switch base)
+  brdn bru mctl lpad f5 dnd prev pp next mute vold volu
 )
