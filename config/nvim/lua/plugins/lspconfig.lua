@@ -5,7 +5,6 @@ return {
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     opts = {
       ensure_installed = {
-        "gopls",
         "typescript-language-server",
       },
     },
