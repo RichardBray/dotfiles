@@ -71,7 +71,7 @@ abbr gsh 'git stash'
 abbr gsp 'git stash pop'
 
 # Audio aliases
-abbr cuca 'uv run --with "numpy,pyaudio" ~/content-tools/scripts/virtual_mic_delay.py'
+# cuca is now a real executable symlinked into ~/.local/bin, no abbr needed
 abbr transcribe '~/whisper_app/index.js ~/Downloads/"$input_name"_ff.mp4'
 
 # Kanata control aliases
