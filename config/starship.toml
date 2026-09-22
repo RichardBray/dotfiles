@@ -38,3 +38,6 @@ format = '⏱️ [$duration]($style) '
 [directory]
 truncation_length = 3
 truncate_to_repo = false
+
+[gcloud]
+disabled = true
